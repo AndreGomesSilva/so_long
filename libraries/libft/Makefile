@@ -13,10 +13,10 @@
 NAME = libft.a
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+HEADER = ./inc
+CFLAGS = -Wall -Wextra -Werror -I$(HEADER)
 AR = ar -rcs
 RM = rm -f
-HEADER = inc/libft.h
 
 FILES =\
 	ft_strlen \

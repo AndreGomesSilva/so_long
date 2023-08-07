@@ -12,7 +12,8 @@ int check_param(int argc, char**argv)
     }
     else
     {
-       printf("We need one map");
+        ft_putstr_fd("hello", 1);
+        printf("ERRO");
     }
     return (1);
 }

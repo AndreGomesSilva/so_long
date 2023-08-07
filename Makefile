@@ -92,13 +92,13 @@ OBJS = $(addprefix $(OBJS_DIR)/, $(addsuffix .o, $(FILES)))
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS) | $(BIN_DIR)
-	$(CC) $(CFLAGS) $(CDEBUG) $(OBJS) $(LIBFT) $(LMLX) -o $@
+	$(CC) $(CFLAGS) $(CDEBUG) $(OBJS) -L./libraries/libft -lft $(LMLX) -o $@
 
 $(OBJS_DIR)/%.o:$(SRCS_DIR)/%.c | $(OBJS_DIR)
 	$(CC) $(CFLAGS) $(CDEBUG) $(KEYCODES) $(RATES) -c $< -o $@
 
 $(LIBFT):
-	$(MAKE)	 -C $(LIBFT_PATH)
+	$(MAKE)	-C $(LIBFT_PATH)
 
 play:
 	./$(NAME)
