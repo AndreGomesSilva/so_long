@@ -57,7 +57,7 @@ ifeq ($(UNAME), Linux)
 endif
 
 # Make variables
-PRINTF = printf
+HEADER = inc/so_long.h
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 CC = gcc -MD
@@ -68,9 +68,9 @@ BIN_DIR = bin
 OBJ_GNL_DIR = obj_gnl
 BIN = so_long
 NAME = $(BIN_DIR)/$(BIN)
-LIBFT = libft/bin/libft.a
-LIBFT_DIR = libft
-LIBFT_SRC = $(shell [ -d libft ] && ls libft/src*/*.c)
+LIBFT_PATH = libraries/libft
+LIBFT = $(LIBFT_PATH)/libft.a
+
 GNL_DIR = get_next_line
 
 # Keycodes defined during compilation
@@ -90,11 +90,14 @@ OBJS = $(addprefix $(OBJS_DIR)/, $(addsuffix .o, $(FILES)))
 
 all: $(NAME)
 
-$(NAME): $(OBJS) | $(BIN_DIR)
-	$(CC) $(CFLAGS) $(CDEBUG) $(OBJS) $(LMLX) -o $@
+$(NAME): $(LIBFT) $(OBJS) $(HEADER)| $(BIN_DIR)
+	$(CC) $(CFLAGS) $(CDEBUG) $(LIBFT) $(OBJS) $(LMLX) -o $@
 
 $(OBJS_DIR)/%.o:$(SRCS_DIR)/%.c | $(OBJS_DIR)
 	$(CC) $(CFLAGS) $(CDEBUG) $(KEYCODES) $(RATES) -c $< -o $@
+
+$(LIBFT):
+	$(MAKE)	 -C $(LIBFT_PATH)
 
 play:
 	./$(NAME)
@@ -106,9 +109,11 @@ $(BIN_DIR):
 	@mkdir -p $(BIN_DIR)
 
 clean:
+	$(MAKE) -C $(LIBFT_PATH) clean
 	$(RM) -r $(OBJS_DIR)
 
 fclean: clean
+	$(MAKE) -C $(LIBFT_PATH) fclean
 	$(RM) -r $(BIN_DIR)
 
 re: fclean all
