@@ -57,8 +57,8 @@ ifeq ($(UNAME), Linux)
 endif
 
 # Make variables
-HEADER = inc/so_long.h
-CFLAGS = -Wall -Wextra -Werror
+HEADER = ./inc
+CFLAGS = -Wall -Wextra -Werror -I$(HEADER)
 RM = rm -f
 CC = gcc -MD
 AR = ar rcs
@@ -83,6 +83,7 @@ SRCS_MAPS = map01.ber
 
 FILES =\
 	main \
+	check_param \
 
 SRCS = $(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(FILES)))
 
@@ -90,8 +91,8 @@ OBJS = $(addprefix $(OBJS_DIR)/, $(addsuffix .o, $(FILES)))
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJS) $(HEADER)| $(BIN_DIR)
-	$(CC) $(CFLAGS) $(CDEBUG) $(LIBFT) $(OBJS) $(LMLX) -o $@
+$(NAME): $(LIBFT) $(OBJS) | $(BIN_DIR)
+	$(CC) $(CFLAGS) $(CDEBUG) $(OBJS) $(LIBFT) $(LMLX) -o $@
 
 $(OBJS_DIR)/%.o:$(SRCS_DIR)/%.c | $(OBJS_DIR)
 	$(CC) $(CFLAGS) $(CDEBUG) $(KEYCODES) $(RATES) -c $< -o $@

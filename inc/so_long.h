@@ -26,9 +26,16 @@ typedef struct s_game{
     void *img_player;
 } t_game;
 
+typedef struct s_image{
+    int pixel_bits;
+    int line_bytes;
+    int endian;
+}t_image;
+
 # include <mlx.h>
 # include <stdlib.h>
 # include <stdio.h>
 
+int check_param(int argc, char**argv);
 
 #endif
