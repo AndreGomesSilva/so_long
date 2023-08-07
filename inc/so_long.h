@@ -16,8 +16,19 @@
 # define WINDOW_HEIGHT 600
 # define MLX_ERROR 1
 
+typedef struct s_game{
+    void *mlx;
+    void *window;
+    char **map;
+    void *img_wall;
+    void *img_background;
+    void *img_exit;
+    void *img_player;
+} t_game;
+
 # include <mlx.h>
 # include <stdlib.h>
 # include <stdio.h>
+
 
 #endif
