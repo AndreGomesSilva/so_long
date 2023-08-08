@@ -26,7 +26,16 @@ typedef struct s_game{
     void *img_player;
 } t_game;
 
+typedef struct s_map{
+   char *x;
+   char *y;
+   int x_len;
+   int y_len;
+} t_map;
+
 typedef struct s_image{
+    int img_width;
+    int img_height;
     int pixel_bits;
     int line_bytes;
     int endian;
@@ -35,7 +44,10 @@ typedef struct s_image{
 # include <mlx.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include "../libraries/libft/inc/libft.h"
+# include <fcntl.h>
 
 int check_param(int argc, char**argv);
+int game_init(char *str);
 
 #endif
