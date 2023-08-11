@@ -11,17 +11,17 @@
 # **************************************************************************** #
 
 # Key Codes for MacOS
-ESC = KEY_ESC=53
-W = KEY_W=13
-A = KEY_A=0
-S = KEY_S=1
-D = KEY_D=2
-UP = KEY_UP=126
-DOWN = KEY_DOWN=125
-LEFT = KEY_LEFT=123
-RIGHT = KEY_RIGHT=124
-R = KEY_R=15
-Q = KEY_Q=12
+#ESC = KEY_ESC=53
+#W = KEY_W=13
+#A = KEY_A=0
+#S = KEY_S=1
+#D = KEY_D=2
+#UP = KEY_UP=126
+#DOWN = KEY_DOWN=125
+#LEFT = KEY_LEFT=123
+#RIGHT = KEY_RIGHT=124
+#R = KEY_R=15
+#Q = KEY_Q=12
 
 # Properties for MacOS
 CDEBUG = #-g3 -fsanitize=address
@@ -40,20 +40,20 @@ ifeq ($(UNAME), Linux)
 	GAME = game_linux.c
 	RENDER = render_linux.c
 	GRATE = GAME_RATE=80
-	CDEBUG =
+	CDEBUG = -g3 -fsanitize=address
 
-	# Key Codes for Linux
-	ESC = KEY_ESC=65307
-	W = KEY_W=119
-	A = KEY_A=97
-	S = KEY_S=115
-	D = KEY_D=100
-	UP = KEY_UP=65362
-	DOWN = KEY_DOWN=65364
-	LEFT = KEY_LEFT=65361
-	RIGHT = KEY_RIGHT=65363
-	R = KEY_R=114
-	Q = KEY_Q=113
+#	# Key Codes for Linux
+#	ESC = KEY_ESC=65307
+#	W = KEY_W=119
+#	A = KEY_A=97
+#	S = KEY_S=115
+#	D = KEY_D=100
+#	UP = KEY_UP=65362
+#	DOWN = KEY_DOWN=65364
+#	LEFT = KEY_LEFT=65361
+#	RIGHT = KEY_RIGHT=65363
+#	R = KEY_R=114
+#	Q = KEY_Q=113
 endif
 
 # Make variables
@@ -70,30 +70,32 @@ BIN = so_long
 NAME = $(BIN_DIR)/$(BIN)
 LIBFT_PATH = libraries/libft
 LIBFT = $(LIBFT_PATH)/libft.a
+MLX_PATH = libraries/MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm
+MLX_HEADER = libraries/MLX42/include
 
 GNL_DIR = get_next_line
 
 # Keycodes defined during compilation
-KEYCODES =  -D $(ESC) -D $(Q) -D $(R) -D $(W) -D $(A) -D $(S) -D $(D) -D $(UP) -D $(DOWN) -D $(LEFT) -D $(RIGHT)
+#KEYCODES =  -D $(ESC) -D $(Q) -D $(R) -D $(W) -D $(A) -D $(S) -D $(D) -D $(UP) -D $(DOWN) -D $(LEFT) -D $(RIGHT)
 
 # Game speeds defined during compilation
 RATES = -D $(GRATE)
 
-SRCS_MAPS = map01.ber
+SRCS_MAPS = "../maps/map.ber"
 
 FILES =\
 	main \
 	check_param \
 	game_init \
 
-SRCS = $(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(FILES)))
+#SRCS = $(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(FILES)))
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(addsuffix .o, $(FILES)))
 
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS) | $(BIN_DIR)
-	$(CC) $(CFLAGS) $(CDEBUG) $(OBJS) -L$(LIBFT_PATH) -lft $(LMLX) -o $@
+	$(CC) $(CFLAGS) $(CDEBUG) $(OBJS) -L$(LIBFT_PATH) -lft $(MLX_PATH) $(LMLX) -o $@
 
 $(OBJS_DIR)/%.o:$(SRCS_DIR)/%.c | $(OBJS_DIR)
 	$(CC) $(CFLAGS) $(CDEBUG) $(KEYCODES) $(RATES) -c $< -o $@
@@ -102,7 +104,7 @@ $(LIBFT):
 	$(MAKE)	-C $(LIBFT_PATH)
 
 play:
-	./$(NAME)
+	./$(NAME) $(SRCS_MAPS)
 
 $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)

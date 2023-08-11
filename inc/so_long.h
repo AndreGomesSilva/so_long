@@ -16,36 +16,20 @@
 # define WINDOW_HEIGHT 600
 # define MLX_ERROR 1
 
-typedef struct s_game{
-    void *mlx;
-    void *window;
-    char **map;
-    void *img_wall;
-    void *img_background;
-    void *img_exit;
-    void *img_player;
-} t_game;
-
-typedef struct s_map{
-   char *x;
-   char *y;
-   int x_len;
-   int y_len;
-} t_map;
-
-typedef struct s_image{
-    int img_width;
-    int img_height;
-    int pixel_bits;
-    int line_bytes;
-    int endian;
-}t_image;
-
-# include <mlx.h>
+# include "../libraries/MLX42/include/MLX42/MLX42.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include "../libraries/libft/inc/libft.h"
 # include <fcntl.h>
+
+typedef struct s_game {
+    mlx_t *mlx;
+    mlx_image_t *background_img;
+    mlx_image_t *wall_img;
+    mlx_texture_t *background_texture;
+    mlx_texture_t *wall_texture;
+    char **map;
+}t_game;
 
 int check_param(int argc, char**argv);
 int game_init(char *str);
