@@ -21,12 +21,14 @@ void draw_background(t_game *game)
     int y;
 
     y = 0;
-    while(y <= WINDOW_HEIGHT)
+    while(y <= WINDOW_HEIGHT / 16)
     {
         x = 0;
-        while (x <= WINDOW_WIDTH )
+        while (x <= WINDOW_WIDTH / 16)
         {
-            mlx_image_to_window(game->mlx, game->wall_img, 0, 0);
+            mlx_image_to_window(game->mlx, game->background_img, x*16, y*16);
+//            if (game->map[y][x] == '1')
+//                mlx_image_to_window(game->mlx, game->wall_img, x, y);
             x++;
         }
         y++;
@@ -84,8 +86,8 @@ char **get_map(char *str)
 
 int map_construct(t_game *game)
 {
-    game->background_texture = mlx_load_png("../sprites/Rock.png");
-    game->wall_texture = mlx_load_png("../sprites/Grass.png");
+    game->background_texture = mlx_load_png("../sprites/Grass.png");
+    game->wall_texture = mlx_load_png("../sprites/Rock.png");
     game->background_img = mlx_texture_to_image(game->mlx, game->background_texture);
     game->wall_img = mlx_texture_to_image(game->mlx, game->wall_texture);
     return(1);
