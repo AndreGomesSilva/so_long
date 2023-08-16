@@ -12,13 +12,13 @@
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-# define WINDOW_WIDTH 800
-# define WINDOW_HEIGHT 600
-# define MLX_ERROR 1
+# define WINDOW_WIDTH 1024
+# define WINDOW_HEIGHT 800
+# define TRUE 1
+# define FALSE 0
 
 # include "../libraries/MLX42/include/MLX42/MLX42.h"
 # include <stdlib.h>
-# include <stdio.h>
 # include "../libraries/libft/inc/libft.h"
 # include <fcntl.h>
 
@@ -26,12 +26,27 @@ typedef struct s_game {
     mlx_t *mlx;
     mlx_image_t *background_img;
     mlx_image_t *wall_img;
+    mlx_image_t *player_img;
+    mlx_image_t *exit_img;
+    mlx_image_t *collectable_img;
     mlx_texture_t *background_texture;
     mlx_texture_t *wall_texture;
+    mlx_texture_t *player_texture;
+    mlx_texture_t *exit_texture;
+    mlx_texture_t *collectable_texture;
     char **map;
+    int32_t map_w;
+    int32_t map_h;
 }t_game;
 
-int check_param(int argc, char**argv);
-int game_init(char *str);
+int32_t	game_init(char *str);
+int32_t check_args(int argc, char**argv);
+char **get_map(char *str);
+void draw_map(t_game *game);
+int32_t map_construct(t_game *game);
+void ft_error(char *error);
+void get_size_map(t_game *game);
+int32_t map_is_rectangle(t_game *game);
+int32_t number_player_and_exit(t_game *game);
 
 #endif

@@ -24,11 +24,12 @@
 #Q = KEY_Q=12
 
 # Properties for MacOS
-CDEBUG = #-g3 -fsanitize=address
+CDEBUG = -g3 -fsanitize=address
 GRATE = GAME_RATE=17
 GAME = game_mac.c
 RENDER = render_mac.c
-LMLX = -lmlx -framework OpenGL -framework AppKit
+#LMLX = -lmlx -framework OpenGL -framework AppKit
+LMLX = -framework Cocoa -framework OpenGL -framework IOKit
 
 SHELL=/bin/bash
 UNAME = $(shell uname -s)
@@ -81,12 +82,15 @@ GNL_DIR = get_next_line
 # Game speeds defined during compilation
 RATES = -D $(GRATE)
 
-SRCS_MAPS = "../maps/map.ber"
+SRCS_MAPS = "./maps/map.ber"
 
 FILES =\
 	main \
-	check_param \
+	check_args \
 	game_init \
+	handle_error \
+	handle_map \
+	draw_map \
 
 #SRCS = $(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(FILES)))
 
@@ -104,7 +108,7 @@ $(LIBFT):
 	$(MAKE)	-C $(LIBFT_PATH)
 
 play:
-	./$(NAME) $(SRCS_MAPS)
+	MALLOC_OPTIONS=3 ./bin/so_long "./maps/map.ber"
 
 $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)

@@ -55,6 +55,9 @@ FILES =\
 	ft_split \
 	get_next_line \
 	get_next_line_utils \
+	ft_printf \
+	ft_printf_utils_number \
+	ft_printf_utils_string \
 
 SRCS_DIR = src
 SRCS = $(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(FILES)))

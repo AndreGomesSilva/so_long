@@ -24,27 +24,6 @@ t_list	*ft_lstnew(void *content)
 	return (node);
 }
 
-void	*ft_calloc(size_t nmemb, size_t size)
-{
-	char	*ptr;
-	size_t	total_size;
-	size_t	i;
-
-	i = 0;
-	total_size = nmemb * size;
-	if (total_size != 0 && total_size / size != nmemb)
-		return (NULL);
-	ptr = (char *)malloc(total_size);
-	if (!ptr)
-		return (NULL);
-	while (i < total_size)
-	{
-		ptr[i] = '\0';
-		i++;
-	}
-	return ((void *)ptr);
-}
-
 int	ft_lstsize(t_list *lst)
 {
 	int	count;

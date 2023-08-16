@@ -19,6 +19,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
 
 typedef struct s_list
 {
@@ -62,10 +63,17 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
 char				*get_next_line(int fd);
 t_list				*ft_lstnew(void *content);
-void				*ft_calloc(size_t nmemb, size_t size);
 int					ft_lstsize(t_list *lst);
 void				ft_lstclear(t_list **lst);
 int					ft_check_end_line(t_list *lst, int bytes_read,
                                          t_list *rest_node);
+int	ft_printf(const char *str, ...);
+int	print_char(char c);
+int	print_string(char *str);
+int	print_number(long int number);
+int	print_unsigned_number(long int number);
+int	print_number(long int number);
+int	print_pointer(int pointer);
+int	hexadecimal_convert(unsigned long number, int result, int flag_type);
 
 #endif
