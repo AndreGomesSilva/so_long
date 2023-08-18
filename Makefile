@@ -88,6 +88,9 @@ FILES =\
 	main \
 	check_args \
 	game_init \
+	player_actions \
+	handle_input \
+	handle_image \
 	handle_error \
 	handle_map \
 	draw_map \

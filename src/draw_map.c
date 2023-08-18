@@ -4,10 +4,10 @@
 
 #include "../inc/so_long.h"
 
-void draw_map(t_game *game)
+void draw_layers(t_game *game, mlx_image_t *img, int type)
 {
-    int x;
-    int y;
+    int32_t x;
+    int32_t y;
 
     y = 0;
     while(game->map[y] != NULL)
@@ -15,49 +15,33 @@ void draw_map(t_game *game)
         x = 0;
         while (game->map[y][x] != '\0')
         {
-            mlx_image_to_window(game->mlx, game->background_img, x * 32, y * 32);
-            if(game->map[y][x] == '1')
-                mlx_image_to_window(game->mlx, game->wall_img, x * 32, y * 32);
-            else if(game->map[y][x] == 'P')
-                mlx_image_to_window(game->mlx, game->player_img, x * 32, y * 32);
-            else if(game->map[y][x] == 'E')
-                mlx_image_to_window(game->mlx, game->exit_img, x * 32, y * 32);
-            else if(game->map[y][x] == 'C')
-                mlx_image_to_window(game->mlx, game->collectable_img, x * 32, y * 32);
+            if (type == '0')
+                mlx_image_to_window(game->mlx, img, game->window_w/2 + ((x - y) * IMAGE_WIDTH/2), game->window_h/2 + ((x + y) * IMAGE_HEIGHT/2));
+            else if (game->map[y][x] == type)
+                mlx_image_to_window(game->mlx, img, game->window_w/2 + ((x - y) * IMAGE_WIDTH/2), game->window_h/2 - 8 + ((x + y) * IMAGE_HEIGHT/2));
             x++;
         }
         y++;
     }
 }
 
+void draw_map(t_game *game)
+{
+    draw_layers(game, game->background_img, '0') ;
+    draw_layers(game, game->collectable_img, 'C');
+    draw_layers(game, game->exit_img, 'E');
+    draw_layers(game, game->wall_img, '1');
+    draw_layers(game, game->player_img, 'P');
+}
+
 int32_t map_construct(t_game *game)
 {
-    int x;
-    int y;
-
-    x = 32;
-    y = 32;
-    game->background_texture = mlx_load_png("./textures/Grass.png");
-    game->wall_texture = mlx_load_png("./textures/Rock.png");
-    game->player_texture = mlx_load_png("./textures/tile000.png");
-    game->exit_texture = mlx_load_png("./textures/tile018.png");
-    game->collectable_texture = mlx_load_png("./textures/Mushroom_02.png");
-    if (!game->background_texture || !game->wall_texture || !game->player_texture || !game->collectable_texture || !game->exit_texture)
-        return (FALSE);
-    else
+    if (create_texture_from_png(game))
     {
-        game->player_img = mlx_texture_to_image(game->mlx, game->player_texture);
-        game->exit_img = mlx_texture_to_image(game->mlx, game->exit_texture);
-        game->background_img = mlx_texture_to_image(game->mlx, game->background_texture);
-        game->wall_img = mlx_texture_to_image(game->mlx, game->wall_texture);
-        game->collectable_img= mlx_texture_to_image(game->mlx, game->collectable_texture);
-        mlx_resize_image(game->collectable_img, x, y);
-        mlx_resize_image(game->background_img, x, y);
-        mlx_resize_image(game->wall_img, x, y);
-        mlx_resize_image(game->player_img, x, y);
-        mlx_resize_image(game->exit_img, x, y);
-        return(TRUE);
+        create_img_from_texture(game);
+        return (TRUE);
     }
-    return(0);
+    else
+        return (FALSE);
 }
 

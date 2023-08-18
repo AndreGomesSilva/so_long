@@ -47,20 +47,22 @@ int32_t number_player_and_exit(t_game *game)
         }
         y++;
     }
-    if (number_player + number_exit != 2)
+    if (number_player != 1 || number_exit != 1)
         return (FALSE);
     return(TRUE);
 }
 
-void get_size_map(t_game *game)
+void free_map(char **map)
 {
     int32_t i;
 
     i = 0;
-    game->map_w = ft_strlen(*game->map) * 32;
-    while (game->map[i])
+    while(map[i])
+    {
+        free(map[i]);
         i++;
-    game->map_h = i * 32;
+    }
+    free(map);
 }
 
 char **get_map(char *str)

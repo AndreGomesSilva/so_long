@@ -12,8 +12,8 @@
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-# define WINDOW_WIDTH 1024
-# define WINDOW_HEIGHT 800
+# define IMAGE_WIDTH 32
+# define IMAGE_HEIGHT 16
 # define TRUE 1
 # define FALSE 0
 
@@ -35,8 +35,8 @@ typedef struct s_game {
     mlx_texture_t *exit_texture;
     mlx_texture_t *collectable_texture;
     char **map;
-    int32_t map_w;
-    int32_t map_h;
+    int32_t window_w;
+    int32_t window_h;
 }t_game;
 
 int32_t	game_init(char *str);
@@ -45,8 +45,16 @@ char **get_map(char *str);
 void draw_map(t_game *game);
 int32_t map_construct(t_game *game);
 void ft_error(char *error);
-void get_size_map(t_game *game);
+void get_size_window(t_game *game);
 int32_t map_is_rectangle(t_game *game);
 int32_t number_player_and_exit(t_game *game);
+int32_t create_texture_from_png(t_game *game);
+void create_img_from_texture(t_game *game);
+void    free_images(t_game *game);
+void    free_textures(t_game *game);
+void hook_close_window(void *param);
+void free_map(char **map);
+void hook_player_movement(mlx_key_data_t keydata, void *param);
+void    player_move_up(t_game *game);
 
 #endif
