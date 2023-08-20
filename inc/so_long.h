@@ -12,8 +12,10 @@
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-# define IMAGE_WIDTH 32
-# define IMAGE_HEIGHT 16
+# define IMAGE_WIDTH 64
+# define IMAGE_HEIGHT 32
+# define IMAGE_WIDTH_HALF (IMAGE_WIDTH/2)
+# define IMAGE_HEIGHT_HALF (IMAGE_HEIGHT/2)
 # define TRUE 1
 # define FALSE 0
 
@@ -35,6 +37,11 @@ typedef struct s_game {
     mlx_texture_t *exit_texture;
     mlx_texture_t *collectable_texture;
     char **map;
+    char **iso_map;
+    int32_t map_col;
+    int32_t map_row;
+    int32_t player_x;
+    int32_t player_y;
     int32_t window_w;
     int32_t window_h;
 }t_game;
@@ -54,7 +61,10 @@ void    free_images(t_game *game);
 void    free_textures(t_game *game);
 void hook_close_window(void *param);
 void free_map(char **map);
+void cartesian_to_isometric_map(t_game *game);
 void hook_player_movement(mlx_key_data_t keydata, void *param);
 void    player_move_up(t_game *game);
+void set_player_iso_x(int32_t x, int32_t y, t_game *game);
+void set_player_iso_y(int32_t x, int32_t y, t_game *game);
 
 #endif

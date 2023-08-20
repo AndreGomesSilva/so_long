@@ -110,7 +110,7 @@ $(OBJS_DIR)/%.o:$(SRCS_DIR)/%.c | $(OBJS_DIR)
 $(LIBFT):
 	$(MAKE)	-C $(LIBFT_PATH)
 
-play:
+play: all
 	MALLOC_OPTIONS=3 ./bin/so_long "./maps/map.ber"
 
 $(OBJS_DIR):

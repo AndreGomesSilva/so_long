@@ -24,6 +24,11 @@ void create_img_from_texture(t_game *game)
     game->background_img = mlx_texture_to_image(game->mlx, game->background_texture);
     game->wall_img = mlx_texture_to_image(game->mlx, game->wall_texture);
     game->collectable_img= mlx_texture_to_image(game->mlx, game->collectable_texture);
+    mlx_resize_image(game->player_img, 64, 64);
+    mlx_resize_image(game->wall_img, 64, 64);
+    mlx_resize_image(game->background_img, 64, 64);
+    mlx_resize_image(game->collectable_img, 64, 64);
+    mlx_resize_image(game->exit_img, 64, 64);
 }
 
 void    free_images(t_game *game)
