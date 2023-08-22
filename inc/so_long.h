@@ -61,7 +61,6 @@ void    free_images(t_game *game);
 void    free_textures(t_game *game);
 void hook_close_window(void *param);
 void free_map(char **map);
-void cartesian_to_isometric_map(t_game *game);
 void hook_player_movement(mlx_key_data_t keydata, void *param);
 void    player_move_up(t_game *game);
 void set_player_iso_x(int32_t x, int32_t y, t_game *game);

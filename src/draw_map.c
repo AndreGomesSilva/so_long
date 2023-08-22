@@ -4,15 +4,7 @@
 
 #include "../inc/so_long.h"
 
-void set_player_iso_x(int32_t x, int32_t y, t_game *game)
-{
-    game->player_x = ((((x / IMAGE_WIDTH_HALF) + (y / IMAGE_HEIGHT_HALF)) / 2));
-}
 
-void set_player_iso_y(int32_t x, int32_t y, t_game *game)
-{
-    game->player_y = (((y / IMAGE_HEIGHT_HALF) - ( x / IMAGE_WIDTH_HALF)) / 2);
-}
 
 void draw_layers(t_game *game, mlx_image_t *img, char type)
 {
@@ -45,21 +37,21 @@ void draw_layers(t_game *game, mlx_image_t *img, char type)
 //                mlx_image_to_window(game->mlx, game->exit_img, ((x - y) * IMAGE_WIDTH_HALF), ((x + y) * IMAGE_HEIGHT_HALF));
 //            }
             if (type == '0')
-                mlx_image_to_window(game->mlx, img,  ((x - y) * IMAGE_WIDTH_HALF),  ((x + y) * IMAGE_HEIGHT_HALF));
+                mlx_image_to_window(game->mlx, img, game->window_w/2 + ((x - y) * IMAGE_WIDTH_HALF),  game->window_h/2 + 16 + ((x + y) * IMAGE_HEIGHT_HALF));
             else if (game->map[y][x] == type)
             {
                 if (type == 'P')
                 {
 //                    game->player_x = x;
 //                    game->player_y = y;
-                    mlx_image_to_window(game->mlx, img,  ((x - y) * IMAGE_WIDTH_HALF),  ((x + y) * IMAGE_HEIGHT_HALF));
+                    mlx_image_to_window(game->mlx, img, game->window_w/2 + ((x - y) * IMAGE_WIDTH_HALF),  game->window_h/2 + ((x + y) * IMAGE_HEIGHT_HALF));
 //                    game->player_x = (((game->player_img->instances[0].x / IMAGE_WIDTH_HALF) + (game->player_img->instances[0].y / IMAGE_HEIGHT_HALF)) / 2);
 //                    game->player_y = (((game->player_img->instances[0].y / IMAGE_HEIGHT_HALF) - (game->player_img->instances[0].x / IMAGE_WIDTH_HALF)) / 2);
-                    set_player_iso_x(game->player_img->instances[0].x, game->player_img->instances[0].y, game);
-                    set_player_iso_y(game->player_img->instances[0].x, game->player_img->instances[0].y, game);
+                    set_player_iso_x(game->player_img->instances[0].x - game->window_w/2, game->player_img->instances[0].y - game->window_h/2, game);
+                    set_player_iso_y(game->player_img->instances[0].x - game->window_w/2, game->player_img->instances[0].y - game->window_h/2, game);
                 }
                 else
-                    mlx_image_to_window(game->mlx, img, ((x - y) * IMAGE_WIDTH_HALF), ((x + y) * IMAGE_HEIGHT_HALF));
+                    mlx_image_to_window(game->mlx, img, game->window_w/2 + ((x - y) * IMAGE_WIDTH_HALF), game->window_h/2 + ((x + y) * IMAGE_HEIGHT_HALF));
             }
             x++;
         }

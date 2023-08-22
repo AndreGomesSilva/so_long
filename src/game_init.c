@@ -50,7 +50,7 @@ int32_t	game_init(char *str)
     if (map_is_rectangle(&game) && number_player_and_exit(&game))
     {
         get_size_window(&game);
-        game.mlx = mlx_init(game.window_w, game.window_h * 4, "So_long", true);
+        game.mlx = mlx_init(game.window_w + game.window_w/4, game.window_h * 2, "So_long", true);
         if (!game.mlx)
             ft_error("ERROR = fail to init the window\n");
 
@@ -72,7 +72,6 @@ int32_t	game_init(char *str)
     free_images(&game);
     free_textures(&game);
     free_map(game.map);
-//    free_map(game.iso_map);
     mlx_terminate(game.mlx);
     return (EXIT_SUCCESS);
 }
