@@ -6,7 +6,7 @@
 
 int32_t create_texture_from_png(t_game *game)
 {
-    game->background_texture = mlx_load_png("./textures/grass5.png");
+    game->background_texture = mlx_load_png("./textures/grass1.png");
     game->wall_texture = mlx_load_png("./textures/stone4.png");
     game->player_texture = mlx_load_png("./textures/tile006.png");
     game->exit_texture = mlx_load_png("./textures/box1.png");

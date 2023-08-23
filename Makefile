@@ -10,19 +10,6 @@
 #                                                                              #
 # **************************************************************************** #
 
-# Key Codes for MacOS
-#ESC = KEY_ESC=53
-#W = KEY_W=13
-#A = KEY_A=0
-#S = KEY_S=1
-#D = KEY_D=2
-#UP = KEY_UP=126
-#DOWN = KEY_DOWN=125
-#LEFT = KEY_LEFT=123
-#RIGHT = KEY_RIGHT=124
-#R = KEY_R=15
-#Q = KEY_Q=12
-
 # Properties for MacOS
 CDEBUG = -g3 -fsanitize=address
 GRATE = GAME_RATE=17
@@ -42,19 +29,6 @@ ifeq ($(UNAME), Linux)
 	RENDER = render_linux.c
 	GRATE = GAME_RATE=80
 	CDEBUG = -g3 -fsanitize=address
-
-#	# Key Codes for Linux
-#	ESC = KEY_ESC=65307
-#	W = KEY_W=119
-#	A = KEY_A=97
-#	S = KEY_S=115
-#	D = KEY_D=100
-#	UP = KEY_UP=65362
-#	DOWN = KEY_DOWN=65364
-#	LEFT = KEY_LEFT=65361
-#	RIGHT = KEY_RIGHT=65363
-#	R = KEY_R=114
-#	Q = KEY_Q=113
 endif
 
 # Make variables

@@ -42,6 +42,11 @@ void get_size_window(t_game *game)
     game->window_h = game->map_col * IMAGE_HEIGHT;
 }
 
+void ft_close(void *param)
+{
+    mlx_close_window(param);
+}
+
 int32_t	game_init(char *str)
 {
     t_game game;
@@ -66,8 +71,9 @@ int32_t	game_init(char *str)
     print_matrix(game.map);
     ft_printf(" \n instance %i x = %i \n", game.player_img->instances[0].y, game.player_img->instances[0].x);
     ft_printf("y = %i x = %i \n", game.player_y, game.player_x);
-    mlx_loop_hook(game.mlx, &hook_close_window, &game);
+//    mlx_loop_hook(game.mlx, &hook_close_window, &game);
 //    mlx_key_hook(game.mlx, &hook_player_movement, &game);
+    mlx_close_hook(game.mlx, &ft_close, game.mlx);
     mlx_loop(game.mlx);
     free_images(&game);
     free_textures(&game);

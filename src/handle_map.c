@@ -55,8 +55,10 @@ int32_t number_player_and_exit(t_game *game)
 void free_map(char **map)
 {
     int32_t i;
+    int32_t j;
 
     i = 0;
+    j = 0;
     while(map[i])
     {
         free(map[i]);
@@ -76,7 +78,7 @@ char **get_map(char *str)
     if (fd < 0) {
         return (FALSE);
     }
-    all_lines = ft_strdup("");
+    all_lines = (char *)ft_calloc(1, sizeof(char));
     while (TRUE) {
         line = get_next_line(fd);
         if (!line)
