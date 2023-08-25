@@ -37,7 +37,6 @@ typedef struct s_game {
     mlx_texture_t *exit_texture;
     mlx_texture_t *collectable_texture;
     char **map;
-    char **iso_map;
     int32_t map_col;
     int32_t map_row;
     int32_t player_x;
@@ -65,5 +64,6 @@ void hook_player_movement(mlx_key_data_t keydata, void *param);
 void    player_move_up(t_game *game);
 void set_player_iso_x(int32_t x, int32_t y, t_game *game);
 void set_player_iso_y(int32_t x, int32_t y, t_game *game);
+void free_game(t_game *game);
 
 #endif

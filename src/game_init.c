@@ -1,32 +1,31 @@
 
 #include "../inc/so_long.h"
 
-
-
-//void move_player(mlx_key_data_t keydata, t_game *game, void *param)
+//void print_matrix(char **matrix)
 //{
-//    if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
-//    {
-//        game->player_texture = mlx_load_png("./textures/tile002.png");
-//        game->player_img = mlx_texture_to_image(game->mlx, game->player_texture);
+//    int32_t x;
+//    int32_t y;
 //
+//    y = 0;
+//    while(matrix[y])
+//    {
+//        x = 0;
+//        while (matrix[y][x])
+//        {
+//            ft_printf("%c", matrix[y][x]);
+//            x++;
+//        }
+//        y++;
+//    }
 //}
-void print_matrix(char **matrix)
-{
-    int32_t x;
-    int32_t y;
 
-    y = 0;
-    while(matrix[y])
-    {
-        x = 0;
-        while (matrix[y][x])
-        {
-            ft_printf("%c", matrix[y][x]);
-            x++;
-        }
-        y++;
-    }
+void free_game(t_game *game)
+{
+    free_images(game);
+    free_textures(game);
+    mlx_terminate(game->mlx);
+    free_map(game->map);
+    game->map = NULL;
 }
 
 void get_size_window(t_game *game)
@@ -42,15 +41,12 @@ void get_size_window(t_game *game)
     game->window_h = game->map_col * IMAGE_HEIGHT;
 }
 
-void ft_close(void *param)
-{
-    mlx_close_window(param);
-}
 
 int32_t	game_init(char *str)
 {
     t_game game;
 
+    ft_bzero(&game, sizeof(t_game));
     game.map = get_map(str);
     if (map_is_rectangle(&game) && number_player_and_exit(&game))
     {
@@ -61,23 +57,22 @@ int32_t	game_init(char *str)
 
         if (map_construct(&game))
             draw_map(&game);
+
         else
             ft_error("ERROR = fail to construct the map\n");
     }
     else
         ft_error("ERROR = map has to be rectangle and have one player and exit only\n");
-
-//    cartesian_to_isometric_map(&game);
-    print_matrix(game.map);
     ft_printf(" \n instance %i x = %i \n", game.player_img->instances[0].y, game.player_img->instances[0].x);
     ft_printf("y = %i x = %i \n", game.player_y, game.player_x);
-//    mlx_loop_hook(game.mlx, &hook_close_window, &game);
+    mlx_loop_hook(game.mlx, &hook_close_window, &game);
 //    mlx_key_hook(game.mlx, &hook_player_movement, &game);
-    mlx_close_hook(game.mlx, &ft_close, game.mlx);
     mlx_loop(game.mlx);
-    free_images(&game);
-    free_textures(&game);
-    free_map(game.map);
-    mlx_terminate(game.mlx);
+//    free_images(&game);
+//    free_textures(&game);
+//    mlx_terminate(game.mlx);
+//    free_map(game.map);
+    free_game(&game);
     return (EXIT_SUCCESS);
 }
+

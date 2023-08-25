@@ -6,5 +6,5 @@ int32_t	main(int argc, char** argv)
          game_init(*(argv + 1));
     else
         ft_printf("ERROR = Fail To init the game\n");
-
+    return (0);
 }

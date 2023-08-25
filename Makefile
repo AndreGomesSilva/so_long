@@ -10,25 +10,19 @@
 #                                                                              #
 # **************************************************************************** #
 
-# Properties for MacOS
-CDEBUG = -g3 -fsanitize=address
-GRATE = GAME_RATE=17
-GAME = game_mac.c
-RENDER = render_mac.c
-#LMLX = -lmlx -framework OpenGL -framework AppKit
-LMLX = -framework Cocoa -framework OpenGL -framework IOKit
-
+## Properties for MacOS
+#CDEBUG = -g3
+#GRATE = GAME_RATE=17
+##LMLX = -lmlx -framework OpenGL -framework AppKit
+#LMLX = -framework Cocoa -framework OpenGL -framework IOKit
+#
 SHELL=/bin/bash
 UNAME = $(shell uname -s)
 
 ifeq ($(UNAME), Linux)
 	#Properties for Linux
 	LEAKS =  valgrind --leak-check=full --show-leak-kinds=all -s -q
-	LMLX = -lmlx -lXext -lX11
-	GAME = game_linux.c
-	RENDER = render_linux.c
-	GRATE = GAME_RATE=80
-	CDEBUG = -g3 -fsanitize=address
+	CDEBUG = -g3
 endif
 
 # Make variables
@@ -50,12 +44,6 @@ MLX_HEADER = libraries/MLX42/include
 
 GNL_DIR = get_next_line
 
-# Keycodes defined during compilation
-#KEYCODES =  -D $(ESC) -D $(Q) -D $(R) -D $(W) -D $(A) -D $(S) -D $(D) -D $(UP) -D $(DOWN) -D $(LEFT) -D $(RIGHT)
-
-# Game speeds defined during compilation
-RATES = -D $(GRATE)
-
 SRCS_MAPS = "./maps/map.ber"
 
 FILES =\
@@ -76,16 +64,16 @@ OBJS = $(addprefix $(OBJS_DIR)/, $(addsuffix .o, $(FILES)))
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS) | $(BIN_DIR)
-	$(CC) $(CFLAGS) $(CDEBUG) $(OBJS) -L$(LIBFT_PATH) -lft $(MLX_PATH) $(LMLX) -o $@
+	$(CC) $(CFLAGS) $(CDEBUG) $(OBJS) -L$(LIBFT_PATH) -lft $(MLX_PATH) -o $@
 
 $(OBJS_DIR)/%.o:$(SRCS_DIR)/%.c | $(OBJS_DIR)
-	$(CC) $(CFLAGS) $(CDEBUG) $(KEYCODES) $(RATES) -c $< -o $@
+	$(CC) $(CFLAGS) $(CDEBUG) -c $< -o $@
 
 $(LIBFT):
 	$(MAKE)	-C $(LIBFT_PATH)
 
 play: all
-	MALLOC_OPTIONS=3 ./bin/so_long "./maps/map.ber"
+	 valgrind -s --leak-check=full ./bin/so_long "./maps/map.ber"
 
 $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)

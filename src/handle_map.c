@@ -55,16 +55,40 @@ int32_t number_player_and_exit(t_game *game)
 void free_map(char **map)
 {
     int32_t i;
-    int32_t j;
 
     i = 0;
-    j = 0;
     while(map[i])
     {
         free(map[i]);
         i++;
     }
     free(map);
+}
+
+
+
+char	*ft_join(char *s1, char *s2)
+{
+    size_t	s1_len;
+    size_t	s2_len;
+    char	*new_str;
+
+    if (!s1 || !s2)
+        return (NULL);
+    s1_len = ft_strlen(s1);
+    s2_len = ft_strlen(s2);
+    new_str = (char *) malloc((s1_len + s2_len + 1) * sizeof(char));
+    if (new_str != NULL)
+    {
+        ft_strlcpy(new_str, s1, s1_len + 1);
+        ft_strlcat(new_str, s2, s1_len + s2_len + 1);
+        free(s1);
+        free(s2);
+        return (new_str);
+    }
+    free(s1);
+    free(s2);
+    return (NULL);
 }
 
 char **get_map(char *str)
@@ -83,8 +107,7 @@ char **get_map(char *str)
         line = get_next_line(fd);
         if (!line)
             break;
-        all_lines = ft_strjoin(all_lines, line);
-        free(line);
+        all_lines = ft_join(all_lines, line);
     }
     map = ft_split(all_lines, '\n');
     free(all_lines);

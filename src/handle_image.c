@@ -6,11 +6,11 @@
 
 int32_t create_texture_from_png(t_game *game)
 {
-    game->background_texture = mlx_load_png("./textures/grass1.png");
-    game->wall_texture = mlx_load_png("./textures/stone4.png");
-    game->player_texture = mlx_load_png("./textures/tile006.png");
-    game->exit_texture = mlx_load_png("./textures/box1.png");
-    game->collectable_texture = mlx_load_png("./textures/box1.png");
+    game->background_texture = mlx_load_png("./textures/floor2.png");
+    game->wall_texture = mlx_load_png("./textures/rock4.png");
+    game->player_texture = mlx_load_png("./textures/player.png");
+    game->exit_texture = mlx_load_png("./textures/exit.png");
+    game->collectable_texture = mlx_load_png("./textures/book1.png");
     if (!game->background_texture || !game->wall_texture || !game->player_texture
     || !game->collectable_texture || !game->exit_texture)
         return (FALSE);
@@ -22,8 +22,8 @@ void create_img_from_texture(t_game *game)
     int32_t width;
     int32_t height;
 
-    width = 64;
-    height = 64;
+    width = 128;
+    height = 128;
     game->player_img = mlx_texture_to_image(game->mlx, game->player_texture);
     game->exit_img = mlx_texture_to_image(game->mlx, game->exit_texture);
     game->background_img = mlx_texture_to_image(game->mlx, game->background_texture);
@@ -32,7 +32,7 @@ void create_img_from_texture(t_game *game)
     mlx_resize_image(game->player_img, width, height);
     mlx_resize_image(game->wall_img, width, height);
     mlx_resize_image(game->background_img, width, height);
-    mlx_resize_image(game->collectable_img, width, height);
+    mlx_resize_image(game->collectable_img, 32, 32);
     mlx_resize_image(game->exit_img, width, height);
 }
 
