@@ -65,8 +65,6 @@ void free_map(char **map)
     free(map);
 }
 
-
-
 char	*ft_join(char *s1, char *s2)
 {
     size_t	s1_len;

@@ -23,6 +23,7 @@
 # include <stdlib.h>
 # include "../libraries/libft/inc/libft.h"
 # include <fcntl.h>
+# include <math.h>
 
 typedef struct s_game {
     mlx_t *mlx;

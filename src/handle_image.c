@@ -22,8 +22,8 @@ void create_img_from_texture(t_game *game)
     int32_t width;
     int32_t height;
 
-    width = 128;
-    height = 128;
+    width = 64;
+    height = 64;
     game->player_img = mlx_texture_to_image(game->mlx, game->player_texture);
     game->exit_img = mlx_texture_to_image(game->mlx, game->exit_texture);
     game->background_img = mlx_texture_to_image(game->mlx, game->background_texture);
@@ -31,8 +31,8 @@ void create_img_from_texture(t_game *game)
     game->collectable_img= mlx_texture_to_image(game->mlx, game->collectable_texture);
     mlx_resize_image(game->player_img, width, height);
     mlx_resize_image(game->wall_img, width, height);
-    mlx_resize_image(game->background_img, width, height);
-    mlx_resize_image(game->collectable_img, 32, 32);
+    mlx_resize_image(game->background_img, width, height / 2);
+    mlx_resize_image(game->collectable_img, width, height);
     mlx_resize_image(game->exit_img, width, height);
 }
 

@@ -25,7 +25,6 @@ void free_game(t_game *game)
     free_textures(game);
     mlx_terminate(game->mlx);
     free_map(game->map);
-    game->map = NULL;
 }
 
 void get_size_window(t_game *game)

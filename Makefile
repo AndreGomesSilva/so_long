@@ -73,7 +73,7 @@ $(LIBFT):
 	$(MAKE)	-C $(LIBFT_PATH)
 
 play: all
-	 valgrind -s --leak-check=full ./bin/so_long "./maps/map.ber"
+	./bin/so_long "./maps/map.ber"
 
 $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)
