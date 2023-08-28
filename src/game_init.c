@@ -64,6 +64,7 @@ int32_t	game_init(char *str)
         ft_error("ERROR = map has to be rectangle and have one player and exit only\n");
     ft_printf(" \n instance %i x = %i \n", game.player_img->instances[0].y, game.player_img->instances[0].x);
     ft_printf("y = %i x = %i \n", game.player_y, game.player_x);
+    ft_printf("b = %i p = %i \n", game.background_img->instances[26].y, game.player_img->instances[0].y);
     mlx_loop_hook(game.mlx, &hook_close_window, &game);
 //    mlx_key_hook(game.mlx, &hook_player_movement, &game);
     mlx_loop(game.mlx);

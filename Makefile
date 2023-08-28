@@ -10,12 +10,12 @@
 #                                                                              #
 # **************************************************************************** #
 
-## Properties for MacOS
-#CDEBUG = -g3
-#GRATE = GAME_RATE=17
-##LMLX = -lmlx -framework OpenGL -framework AppKit
-#LMLX = -framework Cocoa -framework OpenGL -framework IOKit
-#
+# Properties for MacOS
+CDEBUG = -g3
+GRATE = GAME_RATE=17
+#LMLX = -lmlx -framework OpenGL -framework AppKit
+LMLX = -framework Cocoa -framework OpenGL -framework IOKit
+
 SHELL=/bin/bash
 UNAME = $(shell uname -s)
 
