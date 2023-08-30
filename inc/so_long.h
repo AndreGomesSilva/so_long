@@ -12,14 +12,14 @@
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-# define IMAGE_WIDTH 64
-# define IMAGE_HEIGHT 32
+# define IMAGE_WIDTH 32
+# define IMAGE_HEIGHT 16
 # define IMAGE_WIDTH_HALF (IMAGE_WIDTH/2)
 # define IMAGE_HEIGHT_HALF (IMAGE_HEIGHT/2)
 # define TRUE 1
 # define FALSE 0
 
-# include "../libraries/MLX42/include/MLX42/MLX42.h"
+# include  "../libraries/MLX42/include/MLX42/MLX42.h"
 # include <stdlib.h>
 # include "../libraries/libft/inc/libft.h"
 # include <fcntl.h>
@@ -44,6 +44,8 @@ typedef struct s_game {
     int32_t player_y;
     int32_t window_w;
     int32_t window_h;
+    int32_t start_x;
+    int32_t start_y;
 }t_game;
 
 int32_t	game_init(char *str);
@@ -62,9 +64,9 @@ void    free_textures(t_game *game);
 void hook_close_window(void *param);
 void free_map(char **map);
 void hook_player_movement(mlx_key_data_t keydata, void *param);
-void    player_move_up(t_game *game);
 void set_player_iso_x(int32_t x, int32_t y, t_game *game);
 void set_player_iso_y(int32_t x, int32_t y, t_game *game);
 void free_game(t_game *game);
+int create_new_player_image(t_game *game, char *path);
 
 #endif

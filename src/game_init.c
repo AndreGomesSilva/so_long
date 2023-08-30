@@ -50,7 +50,8 @@ int32_t	game_init(char *str)
     if (map_is_rectangle(&game) && number_player_and_exit(&game))
     {
         get_size_window(&game);
-        game.mlx = mlx_init(game.window_w + game.window_w/4, game.window_h * 2, "So_long", true);
+        game.mlx = mlx_init(1920, 1080, "So_long", true);
+        mlx_set_window_limit(game.mlx, 100, 100, 1920, 1080);
         if (!game.mlx)
             ft_error("ERROR = fail to init the window\n");
 
@@ -64,14 +65,9 @@ int32_t	game_init(char *str)
         ft_error("ERROR = map has to be rectangle and have one player and exit only\n");
     ft_printf(" \n instance %i x = %i \n", game.player_img->instances[0].y, game.player_img->instances[0].x);
     ft_printf("y = %i x = %i \n", game.player_y, game.player_x);
-    ft_printf("b = %i p = %i \n", game.background_img->instances[26].y, game.player_img->instances[0].y);
     mlx_loop_hook(game.mlx, &hook_close_window, &game);
-//    mlx_key_hook(game.mlx, &hook_player_movement, &game);
+   /* mlx_key_hook(game.mlx, &hook_player_movement, &game);*/
     mlx_loop(game.mlx);
-//    free_images(&game);
-//    free_textures(&game);
-//    mlx_terminate(game.mlx);
-//    free_map(game.map);
     free_game(&game);
     return (EXIT_SUCCESS);
 }

@@ -9,45 +9,65 @@ void hook_close_window(void *param)
     t_game *game;
 
     game = (t_game *)param;
-    set_player_iso_x(game->player_img->instances[0].x - game->window_w/2, game->player_img->instances[0].y - game->window_h/2, game);
-    set_player_iso_y(game->player_img->instances[0].x - game->window_w/2, game->player_img->instances[0].y - game->window_h/2, game);
+    set_player_iso_x(game->player_img->instances[0].x,game->player_img->instances[0].y, game);
+    set_player_iso_y(game->player_img->instances[0].x, game->player_img->instances[0].y, game);
 
     if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE)) {
         mlx_close_window(game->mlx);
     }
 
     if (mlx_is_key_down(game->mlx, MLX_KEY_W) && game->map[game->player_y - 1][game->player_x] != '1') {
-        game->player_img->instances[0].y -= 16;
-        game->player_img->instances[0].x += 32;
-        set_player_iso_x(game->player_img->instances[0].x - game->window_w/2, game->player_img->instances[0].y - game->window_h/2, game);
-        set_player_iso_y(game->player_img->instances[0].x - game->window_w/2, game->player_img->instances[0].y - game->window_h/2, game);
+        int32_t x;
+        int32_t y;
+
+        y = game->player_img->instances[0].y -= IMAGE_HEIGHT_HALF;
+        x = game->player_img->instances[0].x += IMAGE_WIDTH_HALF;
+        set_player_iso_x(x, y, game);
+        set_player_iso_y(x, y, game);
+        create_new_player_image(game, "./textures/idle_player_W.png");
+        mlx_image_to_window(game->mlx, game->player_img, x, y);
         ft_printf("W - instance %i x \n", game->player_img->instances[0].y, game->player_img->instances[0].x);
         ft_printf("W -- y = %i x = %i \n", game->player_y, game->player_x);
     }
 
     if (mlx_is_key_down(game->mlx, MLX_KEY_S) && game->map[game->player_y + 1][game->player_x] != '1') {
-        game->player_img->instances[0].y += 16;
-        game->player_img->instances[0].x -= 32;
-        set_player_iso_x(game->player_img->instances[0].x - game->window_w/2, game->player_img->instances[0].y - game->window_h/2, game);
-        set_player_iso_y(game->player_img->instances[0].x - game->window_w/2, game->player_img->instances[0].y - game->window_h/2, game);
+        int32_t x;
+        int32_t y;
+
+        y = game->player_img->instances[0].y += IMAGE_HEIGHT_HALF;
+        x = game->player_img->instances[0].x -= IMAGE_WIDTH_HALF;
+        set_player_iso_x(x, y, game);
+        set_player_iso_y(x, y, game);
+        create_new_player_image(game, "./textures/idle_player_S.png");
+        mlx_image_to_window(game->mlx, game->player_img, x, y);
         ft_printf("S - instance %i x = %i \n", game->player_img->instances[0].y, game->player_img->instances[0].x);
         ft_printf("S -- y = %i x = %i \n", game->player_y, game->player_x);
     }
 
     if (mlx_is_key_down(game->mlx, MLX_KEY_A) && game->map[game->player_y][game->player_x - 1] != '1') {
-        game->player_img->instances[0].x -= 32;
-        game->player_img->instances[0].y -= 16;
-        set_player_iso_x(game->player_img->instances[0].x - game->window_w/2, game->player_img->instances[0].y - game->window_h/2, game);
-        set_player_iso_y(game->player_img->instances[0].x - game->window_w/2, game->player_img->instances[0].y - game->window_h/2, game);
+        int32_t x;
+        int32_t y;
+
+        x = game->player_img->instances[0].x -= IMAGE_WIDTH_HALF;
+        y = game->player_img->instances[0].y -= IMAGE_HEIGHT_HALF;
+        set_player_iso_x(x, y, game);
+        set_player_iso_y(x, y, game);
+        create_new_player_image(game, "./textures/idle_player_A.png");
+        mlx_image_to_window(game->mlx, game->player_img, x, y);
         ft_printf("A - instance %i x  %i = %i \n", game->player_img->instances[0].y, game->player_img->instances[0].x);
         ft_printf("A -- y = %i x = %i\n", game->player_y, game->player_x);
     }
 
     if (mlx_is_key_down(game->mlx, MLX_KEY_D) && game->map[game->player_y][game->player_x + 1] != '1') {
-        game->player_img->instances[0].x += 32;
-        game->player_img->instances[0].y += 16;
-        set_player_iso_x(game->player_img->instances[0].x - game->window_w/2, game->player_img->instances[0].y - game->window_h/2, game);
-        set_player_iso_y(game->player_img->instances[0].x - game->window_w/2, game->player_img->instances[0].y - game->window_h/2, game);
+        int32_t x;
+        int32_t y;
+
+        x = game->player_img->instances[0].x += IMAGE_WIDTH_HALF;
+        y = game->player_img->instances[0].y += IMAGE_HEIGHT_HALF;
+        set_player_iso_x(x, y, game);
+        set_player_iso_y(x, y, game);
+        create_new_player_image(game, "./textures/idle_player_D.png");
+        mlx_image_to_window(game->mlx, game->player_img, x, y);
         ft_printf("D - instance %i x = %i \n", game->player_img->instances[0].y, game->player_img->instances[0].x);
         ft_printf("D -- y = %i x = %i \n", game->player_y, game->player_x);
     }
@@ -59,45 +79,66 @@ void hook_close_window(void *param)
 //
 //
 //    game = (t_game*)param;
-//    set_player_iso_x(game->player_img->instances[0].x - game->window_w/2, game->player_img->instances[0].y - game->window_h/2, game);
-//    set_player_iso_y(game->player_img->instances[0].x - game->window_w/2, game->player_img->instances[0].y - game->window_h/2, game);
+//    set_player_iso_x(game->player_img->instances[0].x, game->player_img->instances[0].y, game);
+//    set_player_iso_y(game->player_img->instances[0].x, game->player_img->instances[0].y, game);
 //    if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS && game->map[game->player_y - 1][game->player_x] != '1')
 //    {
-//        game->player_img->instances[0].y -= 16;
-//        game->player_img->instances[0].x += 32;
-//        set_player_iso_x(game->player_img->instances[0].x - game->window_w/2, game->player_img->instances[0].y - game->window_h/2, game);
-//        set_player_iso_y(game->player_img->instances[0].x - game->window_w/2, game->player_img->instances[0].y - game->window_h/2, game);
+//        int32_t x;
+//        int32_t y;
+//
+//        y = game->player_img->instances[0].y -= 8;
+//        x = game->player_img->instances[0].x += 16;
+//        set_player_iso_x(x, y, game);
+//        set_player_iso_y(x, y, game);
+//        create_new_player_image(game, "./textures/idle_player_W.png");
+//        mlx_image_to_window(game->mlx, game->player_img, x, y);
 //        ft_printf("W - instance %i x \n", game->player_img->instances[0].y, game->player_img->instances[0].x);
 //        ft_printf("W -- y = %i x = %i \n", game->player_y, game->player_x);
 //    }
 //
 //    if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS && game->map[game->player_y + 1][game->player_x] != '1')
 //    {
-//        game->player_img->instances[0].y += 16;
-//        game->player_img->instances[0].x -= 32;
-//        set_player_iso_x(game->player_img->instances[0].x - game->window_w/2, game->player_img->instances[0].y - game->window_h/2, game);
-//        set_player_iso_y(game->player_img->instances[0].x - game->window_w/2, game->player_img->instances[0].y - game->window_h/2, game);
+//        int32_t x;
+//        int32_t y;
+//
+//        y = game->player_img->instances[0].y += IMAGE_HEIGHT_HALF;
+//        x = game->player_img->instances[0].x -= IMAGE_WIDTH_HALF;
+//        set_player_iso_x(x, y, game);
+//        set_player_iso_y(x, y, game);
+//        create_new_player_image(game, "./textures/idle_player_S.png");
+//        mlx_image_to_window(game->mlx, game->player_img, x, y);
 //        ft_printf("S - instance %i x = %i \n", game->player_img->instances[0].y, game->player_img->instances[0].x);
 //        ft_printf("S -- y = %i x = %i \n", game->player_y, game->player_x);
 //    }
 //
 //    if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS && game->map[game->player_y][game->player_x - 1] != '1')
 //    {
-//        game->player_img->instances[0].x -= 32;
-//        game->player_img->instances[0].y -= 16;
-//        set_player_iso_x(game->player_img->instances[0].x - game->window_w/2, game->player_img->instances[0].y - game->window_h/2, game);
-//        set_player_iso_y(game->player_img->instances[0].x - game->window_w/2, game->player_img->instances[0].y - game->window_h/2, game);
+//        int32_t x;
+//        int32_t y;
+//
+//        x = game->player_img->instances[0].x -= IMAGE_WIDTH_HALF;
+//        y = game->player_img->instances[0].y -= IMAGE_HEIGHT_HALF;
+//        set_player_iso_x(x, y, game);
+//        set_player_iso_y(x, y, game);
+//        create_new_player_image(game, "./textures/idle_player_A.png");
+//        mlx_image_to_window(game->mlx, game->player_img, x, y);
 //        ft_printf("A - instance %i x  %i = %i \n", game->player_img->instances[0].y, game->player_img->instances[0].x);
 //        ft_printf("A -- y = %i x = %i\n", game->player_y, game->player_x);
 //    }
+//
 //    if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS && game->map[game->player_y][game->player_x + 1] != '1')
 //    {
-//        game->player_img->instances[0].x += 32;
-//        game->player_img->instances[0].y += 16;
-//        set_player_iso_x(game->player_img->instances[0].x - game->window_w/2, game->player_img->instances[0].y - game->window_h/2, game);
-//        set_player_iso_y(game->player_img->instances[0].x - game->window_w/2, game->player_img->instances[0].y - game->window_h/2, game);
+//        int32_t x;
+//        int32_t y;
+//
+//        x = game->player_img->instances[0].x += IMAGE_WIDTH_HALF;
+//        y = game->player_img->instances[0].y += IMAGE_HEIGHT_HALF;
+//        set_player_iso_x(x, y, game);
+//        set_player_iso_y(x, y, game);
+//        create_new_player_image(game, "./textures/idle_player_D.png");
+//        mlx_image_to_window(game->mlx, game->player_img, x, y);
 //        ft_printf("D - instance %i x = %i \n", game->player_img->instances[0].y, game->player_img->instances[0].x);
 //        ft_printf("D -- y = %i x = %i \n", game->player_y, game->player_x);
 //    }
-//
+
 //}
