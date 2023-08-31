@@ -66,7 +66,7 @@ int32_t	game_init(char *str)
     ft_printf(" \n instance %i x = %i \n", game.player_img->instances[0].y, game.player_img->instances[0].x);
     ft_printf("y = %i x = %i \n", game.player_y, game.player_x);
     mlx_loop_hook(game.mlx, &hook_close_window, &game);
-   /* mlx_key_hook(game.mlx, &hook_player_movement, &game);*/
+    mlx_key_hook(game.mlx, &hook_player_movement, &game);
     mlx_loop(game.mlx);
     free_game(&game);
     return (EXIT_SUCCESS);

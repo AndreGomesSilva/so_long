@@ -46,6 +46,7 @@ typedef struct s_game {
     int32_t window_h;
     int32_t start_x;
     int32_t start_y;
+    int n_coletable;
 }t_game;
 
 int32_t	game_init(char *str);
@@ -68,5 +69,8 @@ void set_player_iso_x(int32_t x, int32_t y, t_game *game);
 void set_player_iso_y(int32_t x, int32_t y, t_game *game);
 void free_game(t_game *game);
 int create_new_player_image(t_game *game, char *path);
+void    update_player_movement(t_game *game, int x, int y, char *path);
+int get_x_iso_to_cart(int x, int y, t_game *game);
+int get_y_iso_to_cart(int x, int y, t_game * game);
 
 #endif

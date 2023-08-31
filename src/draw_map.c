@@ -62,6 +62,11 @@ void draw_layers(t_game *game, mlx_image_t *img, char type)
                      set_player_iso_x(game->player_img->instances[0].x, game->player_img->instances[0].y, game);
                      set_player_iso_y(game->player_img->instances[0].x, game->player_img->instances[0].y, game);
                 }
+                else if (type == 'C')
+                {
+                    mlx_image_to_window(game->mlx, img, game->start_x + ((x - y) * IMAGE_WIDTH_HALF), game->start_y + ((x + y) * IMAGE_HEIGHT_HALF));
+                    game->n_coletable += 1;
+                }
                 else
                     mlx_image_to_window(game->mlx, img, game->start_x + ((x - y) * IMAGE_WIDTH_HALF), game->start_y + ((x + y) * IMAGE_HEIGHT_HALF));
             }
@@ -75,6 +80,7 @@ void draw_map(t_game *game)
 {
 //    draw_layers(game);
     draw_layers(game, game->background_img, '0') ;
+    game->n_coletable  = 0;
     draw_layers(game, game->collectable_img, 'C');
     draw_layers(game, game->exit_img, 'E');
     draw_layers(game, game->wall_img, '1');
