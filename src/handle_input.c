@@ -91,7 +91,7 @@ void hook_player_movement(mlx_key_data_t keydata, void *param)
             int i;
 
             i = 0;
-            while (i < game->n_coletable)
+            while (i < game->n_collectable)
             {
                 if (get_x_iso_to_cart(game->collectable_img->instances[i].x, game->collectable_img->instances[i].y, game) == game->player_x &&
                         get_y_iso_to_cart(game->collectable_img->instances[i].x, game->collectable_img->instances[i].y, game) == game->player_y)

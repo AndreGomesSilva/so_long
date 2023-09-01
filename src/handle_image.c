@@ -10,7 +10,7 @@ int create_new_player_image(t_game *game, char *path)
     mlx_delete_image(game->mlx, game->player_img);
     game->player_texture = mlx_load_png(path);
     game->player_img = mlx_texture_to_image(game->mlx, game->player_texture);
-    mlx_resize_image(game->player_img, 100, 100);
+    mlx_resize_image(game->player_img, game->image_new_width, game->image_new_height);
     return (TRUE);
 }
 
@@ -32,8 +32,8 @@ void create_img_from_texture(t_game *game)
     int32_t  width;
     int32_t height;
 
-    width = 100;
-    height = 100;
+    width = game->image_new_width;
+    height = game->image_new_height;
     game->player_img = mlx_texture_to_image(game->mlx, game->player_texture);
     game->exit_img = mlx_texture_to_image(game->mlx, game->exit_texture);
     game->background_img = mlx_texture_to_image(game->mlx, game->background_texture);
@@ -41,8 +41,8 @@ void create_img_from_texture(t_game *game)
     game->collectable_img= mlx_texture_to_image(game->mlx, game->collectable_texture);
     mlx_resize_image(game->player_img, width, height);
     mlx_resize_image(game->wall_img, width, height);
-    mlx_resize_image(game->background_img, width, height/ 2);
-    mlx_resize_image(game->collectable_img, 50, 50);
+    mlx_resize_image(game->background_img, width, height / 2);
+    mlx_resize_image(game->collectable_img, width, height);
     mlx_resize_image(game->exit_img, width, height);
 }
 

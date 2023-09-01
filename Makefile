@@ -55,6 +55,7 @@ FILES =\
 	handle_image \
 	handle_error \
 	handle_map \
+	handle_window \
 	draw_map \
 
 #SRCS = $(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(FILES)))
