@@ -33,7 +33,6 @@ int get_x_iso_to_cart(int x, int y, t_game *game)
     x -= game->start_x;
     y -= game->start_y;
     result = (((((x) / IMAGE_WIDTH_HALF) + (y / IMAGE_HEIGHT_HALF)) / 2));
-    ft_printf("x -> C = %i ", result);
     return (result);
 }
 
@@ -43,8 +42,6 @@ int get_y_iso_to_cart(int x, int y, t_game *game)
 
     x -= game->start_x;
     y -= game->start_y;
-
    result = ((((y) / IMAGE_HEIGHT_HALF) - ((x) / IMAGE_WIDTH_HALF)) / 2);
-   ft_printf("y -> C = %i ", result);
    return(result);
 }

@@ -47,6 +47,7 @@ typedef struct s_game {
     int32_t start_x;
     int32_t start_y;
     int n_collectable;
+    int r_collectable;
     int image_new_width;
     int image_new_height;
 }t_game;
@@ -56,6 +57,7 @@ int32_t check_args(int argc, char**argv);
 char **get_map(char *str);
 void draw_map(t_game *game);
 int32_t map_construct(t_game *game);
+void draw_layers(t_game *game, mlx_image_t *img, char type);
 void ft_error(char *error);
 void get_size_window(t_game *game);
 int32_t map_is_rectangle(t_game *game);
@@ -75,5 +77,6 @@ void    update_player_movement(t_game *game, int x, int y, char *path);
 int get_x_iso_to_cart(int x, int y, t_game *game);
 int get_y_iso_to_cart(int x, int y, t_game * game);
 void    check_window_size(t_game *game);
+int collect(t_game *game);
 
 #endif

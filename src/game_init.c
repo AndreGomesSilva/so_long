@@ -50,8 +50,8 @@ int32_t	game_init(char *str)
     if (map_is_rectangle(&game) && number_player_and_exit(&game))
     {
         get_size_window(&game);
-        game.mlx = mlx_init(1260, 720, "So_long", true);
-        mlx_set_window_limit(game.mlx, 100, 100, 1920, 1080);
+        game.mlx = mlx_init( 1260, 920, "So_long", true);
+//        mlx_set_window_limit(game.mlx, 100, 100, 1920, 1080);
         check_window_size(&game);
         if (!game.mlx)
             ft_error("ERROR = fail to init the window\n");
