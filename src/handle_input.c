@@ -134,6 +134,4 @@ void hook_player_movement(mlx_key_data_t keydata, void *param)
         ft_printf("D - instance %i x = %i \n", game->player_img->instances[0].y, game->player_img->instances[0].x);
         ft_printf("D -- y = %i x = %i \n", game->player_y, game->player_x);
     }
-
-
 }

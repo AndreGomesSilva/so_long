@@ -44,7 +44,7 @@ void draw_layers(t_game *game, mlx_image_t *img, char type)
     int32_t x;
     int32_t y;
 
-    game->start_x = game->window_w /4;
+    game->start_x = game->window_w /2;
     game->start_y = game->window_h /2;
     y = 0;
     while(game->map[y] != NULL)
