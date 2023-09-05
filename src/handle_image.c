@@ -17,7 +17,7 @@ int create_new_player_image(t_game *game, char *path)
 int32_t create_texture_from_png(t_game *game)
 {
     game->background_texture = mlx_load_png("./textures/floor2.png");
-    game->wall_texture = mlx_load_png("./textures/rock6.png");
+    game->wall_texture = mlx_load_png("./textures/flora_1.png");
     game->player_texture = mlx_load_png("./textures/idle_player_W.png");
     game->exit_texture = mlx_load_png("./textures/exit.png");
     game->collectable_texture = mlx_load_png("./textures/book1.png");

@@ -13,7 +13,7 @@ void    check_window_size(t_game *game)
     }
     else if (game->mlx->width <= 1920 && game->mlx->height <= 1080)
     {
-        game->image_new_width = 100;
-        game->image_new_height = 100;
+        game->image_new_width = 80;
+        game->image_new_height = 80;
     }
 }

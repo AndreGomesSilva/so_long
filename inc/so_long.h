@@ -12,8 +12,8 @@
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-# define IMAGE_WIDTH 32
-# define IMAGE_HEIGHT 16
+# define IMAGE_WIDTH 64
+# define IMAGE_HEIGHT 32
 # define IMAGE_WIDTH_HALF (IMAGE_WIDTH/2)
 # define IMAGE_HEIGHT_HALF (IMAGE_HEIGHT/2)
 # define TRUE 1

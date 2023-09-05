@@ -44,8 +44,8 @@ void draw_layers(t_game *game, mlx_image_t *img, char type)
     int32_t x;
     int32_t y;
 
-    game->start_x = game->window_w /2;
-    game->start_y = game->window_h /2;
+    game->start_x = game->window_w / 3;
+    game->start_y = game->window_h / 4;
     y = 0;
     while(game->map[y] != NULL)
     {
@@ -53,7 +53,7 @@ void draw_layers(t_game *game, mlx_image_t *img, char type)
         while (game->map[y][x] != '\0')
         {
             if (type == '0')
-                mlx_image_to_window(game->mlx, img, game->start_x + ((x - y) * IMAGE_WIDTH_HALF),  game->start_y + IMAGE_HEIGHT * 2 + ((x + y) * IMAGE_HEIGHT_HALF));
+                mlx_image_to_window(game->mlx, img, game->start_x + ((x - y) * IMAGE_WIDTH_HALF),  game->start_y + ((x + y) * IMAGE_HEIGHT_HALF));
             else if (game->map[y][x] == type)
             {
                 if (type == 'P')
