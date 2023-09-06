@@ -53,7 +53,7 @@ void draw_layers(t_game *game, mlx_image_t *img, char type)
         while (game->map[y][x] != '\0')
         {
             if (type == '0')
-                mlx_image_to_window(game->mlx, img, game->start_x + ((x - y) * IMAGE_WIDTH_HALF),  game->start_y + ((x + y) * IMAGE_HEIGHT_HALF));
+                mlx_image_to_window(game->mlx, img, game->start_x + ((x - y) * IMAGE_WIDTH_HALF),  game->start_y + 32 + ((x + y) * IMAGE_HEIGHT_HALF));
             else if (game->map[y][x] == type)
             {
                 if (type == 'P')
@@ -64,7 +64,7 @@ void draw_layers(t_game *game, mlx_image_t *img, char type)
                 }
                 else if (type == 'C')
                 {
-                    mlx_image_to_window(game->mlx, img, game->start_x + ((x - y) * IMAGE_WIDTH_HALF), game->start_y + ((x + y) * IMAGE_HEIGHT_HALF));
+                    mlx_image_to_window(game->mlx, img, game->start_x + ((x - y) * IMAGE_WIDTH_HALF), game->start_y + 16 + ((x + y) * IMAGE_HEIGHT_HALF));
                     game->n_collectable += 1;
                     game->r_collectable += 1;
                 }

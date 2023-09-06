@@ -57,6 +57,7 @@ FILES =\
 	handle_map \
 	handle_window \
 	handle_collectable \
+	player_movement \
 	draw_map \
 
 #SRCS = $(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(FILES)))

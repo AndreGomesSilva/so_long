@@ -50,6 +50,10 @@ typedef struct s_game {
     int r_collectable;
     int image_new_width;
     int image_new_height;
+    int press_w;
+    int press_s;
+    int press_a;
+    int press_d;
 }t_game;
 
 int32_t	game_init(char *str);
@@ -74,6 +78,10 @@ void set_player_iso_y(int32_t x, int32_t y, t_game *game);
 void free_game(t_game *game);
 int create_new_player_image(t_game *game, char *path);
 void    update_player_movement(t_game *game, int x, int y, char *path);
+void    player_move_up(t_game *game);
+void    player_move_down(t_game *game);
+void    player_move_left(t_game *game);
+void    player_move_right(t_game *game);
 int get_x_iso_to_cart(int x, int y, t_game *game);
 int get_y_iso_to_cart(int x, int y, t_game * game);
 void    check_window_size(t_game *game);

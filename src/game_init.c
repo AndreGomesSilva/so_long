@@ -1,5 +1,6 @@
 
 #include "../inc/so_long.h"
+#include <stdio.h>
 
 //void print_matrix(char **matrix)
 //{
@@ -50,7 +51,7 @@ int32_t	game_init(char *str)
 	{
 		get_size_window(&game);
 		game.mlx = mlx_init(1920, 1080, "So_long", true);
-		//        mlx_set_window_limit(game.mlx, 100, 100, 1920, 1080);
+        mlx_set_window_limit(game.mlx, 100, 100, 1920, 1080);
 		check_window_size(&game);
 		if (!game.mlx)
 			ft_error("ERROR = fail to init the window\n");
@@ -65,7 +66,7 @@ int32_t	game_init(char *str)
 			game.player_img->instances[0].x);
 	ft_printf("y = %i x = %i \n", game.player_y, game.player_x);
 	mlx_loop_hook(game.mlx, &hook_close_window, &game);
-	mlx_key_hook(game.mlx, &hook_player_movement, &game);
+	//mlx_key_hook(game.mlx, &hook_player_movement, &game);
 	mlx_loop(game.mlx);
 	free_game(&game);
 	return (EXIT_SUCCESS);
