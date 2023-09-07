@@ -16,6 +16,7 @@
 # define IMAGE_HEIGHT 32
 # define IMAGE_WIDTH_HALF (IMAGE_WIDTH/2)
 # define IMAGE_HEIGHT_HALF (IMAGE_HEIGHT/2)
+# define MOVE_RANGE 16
 # define TRUE 1
 # define FALSE 0
 
@@ -50,10 +51,10 @@ typedef struct s_game {
     int r_collectable;
     int image_new_width;
     int image_new_height;
-    int press_w;
-    int press_s;
-    int press_a;
-    int press_d;
+    int press_up;
+    int press_down;
+    int press_left;
+    int press_right;
 }t_game;
 
 int32_t	game_init(char *str);

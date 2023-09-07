@@ -87,7 +87,6 @@ void draw_map(t_game *game)
     draw_layers(game, game->wall_img, '1');
     draw_layers(game, game->collectable_img, 'C');
     draw_layers(game, game->player_img, 'P');
-//    draw_layers(game, game->exit_img, 'E');
 }
 
 int32_t map_construct(t_game *game)
