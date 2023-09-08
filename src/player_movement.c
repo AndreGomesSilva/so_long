@@ -11,7 +11,7 @@ void    player_move_up(t_game *game)
 
     y = game->player_img->instances[0].y -= IMAGE_HEIGHT_HALF / MOVE_RANGE;
     x = game->player_img->instances[0].x += IMAGE_WIDTH_HALF / MOVE_RANGE;
-    update_player_movement(game, x, y, "./textures/idle_player_W.png");
+    update_player_movement(game, x, y, "./textures/player_idle/up/idle_player_W.png");
     if (game->map[game->player_y][game->player_x] == 'C')
         collect(game);
     else if(game->n_collectable <= 0 && game->map[game->player_y][game->player_x] == 'E')
@@ -28,7 +28,7 @@ void    player_move_down(t_game *game)
 
     y = game->player_img->instances[0].y += IMAGE_HEIGHT_HALF / MOVE_RANGE;
     x = game->player_img->instances[0].x -= IMAGE_WIDTH_HALF / MOVE_RANGE;
-    update_player_movement(game, x, y, "./textures/idle_player_S.png");
+    update_player_movement(game, x, y, "./textures/player_idle/down/idle_player_S.png");
     if (game->map[game->player_y][game->player_x] == 'C')
         collect(game);
     else if(game->n_collectable <= 0 && game->map[game->player_y][game->player_x] == 'E')
@@ -45,7 +45,7 @@ void    player_move_right(t_game *game)
 
     x = game->player_img->instances[0].x += IMAGE_WIDTH_HALF / MOVE_RANGE;
     y = game->player_img->instances[0].y += IMAGE_HEIGHT_HALF / MOVE_RANGE;
-    update_player_movement(game, x, y, "./textures/idle_player_D.png");
+    update_player_movement(game, x, y, "./textures/player_idle/right/idle_player_D.png");
     if (game->map[game->player_y][game->player_x] == 'C')
         collect(game);
     else if(game->n_collectable <= 0 && game->map[game->player_y][game->player_x] == 'E')
@@ -62,7 +62,7 @@ void    player_move_left(t_game *game)
 
     x = game->player_img->instances[0].x -= IMAGE_WIDTH_HALF / MOVE_RANGE;
     y = game->player_img->instances[0].y -= IMAGE_HEIGHT_HALF / MOVE_RANGE;
-    update_player_movement(game, x, y, "./textures/idle_player_A.png");
+    update_player_movement(game, x, y, "./textures/player_idle/left/idle_player_A.png");
     if (game->map[game->player_y][game->player_x] == 'C')
         collect(game);
     else if(game->n_collectable <= 0 && game->map[game->player_y][game->player_x] == 'E')

@@ -16,11 +16,11 @@ int create_new_player_image(t_game *game, char *path)
 
 int32_t create_texture_from_png(t_game *game)
 {
-    game->background_texture = mlx_load_png("./textures/floor2.png");
-    game->wall_texture = mlx_load_png("./textures/flora_1.png");
-    game->player_texture = mlx_load_png("./textures/idle_player_W.png");
-    game->exit_texture = mlx_load_png("./textures/exit1.png");
-    game->collectable_texture = mlx_load_png("./textures/potion.png");
+    game->background_texture = mlx_load_png("./textures/floor/floor1.png");
+    game->wall_texture = mlx_load_png("./textures/wall/flora_1.png");
+    game->player_texture = mlx_load_png("./textures/player_idle/up/idle_player_W.png");
+    game->exit_texture = mlx_load_png("./textures/exit/exit1.png");
+    game->collectable_texture = mlx_load_png("./textures/collectable/potion.png");
     if (!game->background_texture || !game->wall_texture || !game->player_texture
     || !game->collectable_texture || !game->exit_texture)
         return (FALSE);
