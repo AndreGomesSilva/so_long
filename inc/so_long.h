@@ -12,10 +12,8 @@
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-# define IMAGE_WIDTH 64
+# define IMAGE_WIDTH 32
 # define IMAGE_HEIGHT 32
-# define IMAGE_WIDTH_HALF (IMAGE_WIDTH/2)
-# define IMAGE_HEIGHT_HALF (IMAGE_HEIGHT/2)
 # define MOVE_RANGE 16
 # define TRUE 1
 # define FALSE 0
@@ -39,52 +37,42 @@ typedef struct s_game {
     mlx_texture_t *exit_texture;
     mlx_texture_t *collectable_texture;
     char **map;
-    int32_t map_col;
-    int32_t map_row;
-    int32_t player_x;
-    int32_t player_y;
-    int32_t window_w;
-    int32_t window_h;
-    int32_t start_x;
-    int32_t start_y;
+    int map_col;
+    int map_row;
+    int player_x;
+    int player_y;
+    int window_w;
+    int window_h;
     int n_collectable;
     int r_collectable;
     int image_new_width;
     int image_new_height;
-    int press_up;
-    int press_down;
-    int press_left;
-    int press_right;
 }t_game;
 
-int32_t	game_init(char *str);
-int32_t check_args(int argc, char**argv);
+int	game_init(char *str);
+int check_args(int argc, char**argv);
 char **get_map(char *str);
 void draw_map(t_game *game);
-int32_t map_construct(t_game *game);
+int map_construct(t_game *game);
 void draw_layers(t_game *game, mlx_image_t *img, char type);
 void ft_error(char *error);
 void get_size_window(t_game *game);
-int32_t map_is_rectangle(t_game *game);
-int32_t number_player_and_exit(t_game *game);
-int32_t create_texture_from_png(t_game *game);
+int map_is_rectangle(t_game *game);
+int number_player_and_exit(t_game *game);
+int create_texture_from_png(t_game *game);
 void create_img_from_texture(t_game *game);
 void    free_images(t_game *game);
 void    free_textures(t_game *game);
 void hook_close_window(void *param);
 void free_map(char **map);
 void hook_player_movement(mlx_key_data_t keydata, void *param);
-void set_player_iso_x(int32_t x, int32_t y, t_game *game);
-void set_player_iso_y(int32_t x, int32_t y, t_game *game);
 void free_game(t_game *game);
 int create_new_player_image(t_game *game, char *path);
-void    update_player_movement(t_game *game, int x, int y, char *path);
+void    update_player_movement(t_game *game, char *path);
 void    player_move_up(t_game *game);
 void    player_move_down(t_game *game);
 void    player_move_left(t_game *game);
 void    player_move_right(t_game *game);
-int get_x_iso_to_cart(int x, int y, t_game *game);
-int get_y_iso_to_cart(int x, int y, t_game * game);
 void    check_window_size(t_game *game);
 int collect(t_game *game);
 

@@ -4,13 +4,13 @@
 
 #include "../inc/so_long.h"
 
-static int32_t arg_is_ext_ber(char *str)
+static int arg_is_ext_ber(char *str)
 {
-    int32_t len;
+    int len;
     char    *extension;
 
 
-    len = (int32_t)ft_strlen(str);
+    len = (int)ft_strlen(str);
     extension = ".ber";
     if(ft_strncmp(&str[len - 4], extension, 4) == 0)
         return (TRUE);
@@ -18,7 +18,7 @@ static int32_t arg_is_ext_ber(char *str)
         return (FALSE);
 }
 
-int32_t check_args(int argc, char**argv)
+int check_args(int argc, char**argv)
 {
     if (argc == 2)
     {

@@ -6,68 +6,52 @@
 
 void    player_move_up(t_game *game)
 {
-    int x;
-    int y;
-
-    y = game->player_img->instances[0].y -= IMAGE_HEIGHT_HALF / MOVE_RANGE;
-    x = game->player_img->instances[0].x += IMAGE_WIDTH_HALF / MOVE_RANGE;
-    update_player_movement(game, x, y, "./textures/player_idle/up/idle_player_W.png");
+    game->player_img->instances[0].y -= 1;
+    game->player_y -= 1;
+    update_player_movement(game,"./textures/player_idle/right/tile000.png");
     if (game->map[game->player_y][game->player_x] == 'C')
         collect(game);
     else if(game->n_collectable <= 0 && game->map[game->player_y][game->player_x] == 'E')
         exit(1);
-    game->press_up++;
-    ft_printf("S - instance %i x = %i \n", game->player_img->instances[0].y, game->player_img->instances[0].x);
-    ft_printf("S -- y = %i x = %i \n", game->player_y, game->player_x);
+    ft_printf("W - instance %i x = %i \n", game->player_img->instances[0].y, game->player_img->instances[0].x);
+    ft_printf("W -- y = %i x = %i \n", game->player_y, game->player_x);
 }
 
 void    player_move_down(t_game *game)
 {
-    int x;
-    int y;
-
-    y = game->player_img->instances[0].y += IMAGE_HEIGHT_HALF / MOVE_RANGE;
-    x = game->player_img->instances[0].x -= IMAGE_WIDTH_HALF / MOVE_RANGE;
-    update_player_movement(game, x, y, "./textures/player_idle/down/idle_player_S.png");
+    game->player_img->instances[0].y += 1;
+    game->player_y += 1;
+    update_player_movement(game,"./textures/player_idle/right/tile000.png");
     if (game->map[game->player_y][game->player_x] == 'C')
         collect(game);
     else if(game->n_collectable <= 0 && game->map[game->player_y][game->player_x] == 'E')
         exit(1);
-    game->press_down++;
     ft_printf("S - instance %i x = %i \n", game->player_img->instances[0].y, game->player_img->instances[0].x);
     ft_printf("S -- y = %i x = %i \n", game->player_y, game->player_x);
 }
 
 void    player_move_right(t_game *game)
 {
-    int x;
-    int y;
-
-    x = game->player_img->instances[0].x += IMAGE_WIDTH_HALF / MOVE_RANGE;
-    y = game->player_img->instances[0].y += IMAGE_HEIGHT_HALF / MOVE_RANGE;
-    update_player_movement(game, x, y, "./textures/player_idle/right/idle_player_D.png");
+    game->player_img->instances[0].x += 1;
+    game->player_x += 1;
+    update_player_movement(game,"./textures/player_idle/right/tile000.png");
     if (game->map[game->player_y][game->player_x] == 'C')
         collect(game);
     else if(game->n_collectable <= 0 && game->map[game->player_y][game->player_x] == 'E')
         exit(1);
-    game->press_right++;
     ft_printf("D - instance %i x = %i \n", game->player_img->instances[0].y, game->player_img->instances[0].x);
     ft_printf("D -- y = %i x = %i \n", game->player_y, game->player_x);
 }
 
 void    player_move_left(t_game *game)
 {
-    int x;
-    int y;
-
-    x = game->player_img->instances[0].x -= IMAGE_WIDTH_HALF / MOVE_RANGE;
-    y = game->player_img->instances[0].y -= IMAGE_HEIGHT_HALF / MOVE_RANGE;
-    update_player_movement(game, x, y, "./textures/player_idle/left/idle_player_A.png");
+    game->player_img->instances[0].x -= 1;
+    game->player_x -= 1;
+    update_player_movement(game, "./textures/player_idle/right/tile000.png");
     if (game->map[game->player_y][game->player_x] == 'C')
         collect(game);
     else if(game->n_collectable <= 0 && game->map[game->player_y][game->player_x] == 'E')
         exit(1);
-    game->press_left++;
     ft_printf("A - instance %i x = %i \n", game->player_img->instances[0].y, game->player_img->instances[0].x);
     ft_printf("A -- y = %i x = %i\n", game->player_y, game->player_x);
 }

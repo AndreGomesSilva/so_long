@@ -44,8 +44,6 @@ void draw_layers(t_game *game, mlx_image_t *img, char type)
     int32_t x;
     int32_t y;
 
-    game->start_x = game->window_w / 3;
-    game->start_y = game->window_h / 4;
     y = 0;
     while(game->map[y] != NULL)
     {
@@ -53,25 +51,25 @@ void draw_layers(t_game *game, mlx_image_t *img, char type)
         while (game->map[y][x] != '\0')
         {
             if (type == '0')
-                mlx_image_to_window(game->mlx, img, game->start_x + ((x - y) * IMAGE_WIDTH_HALF),  game->start_y + 32 + ((x + y) * IMAGE_HEIGHT_HALF));
+                mlx_image_to_window(game->mlx, img, x * IMAGE_WIDTH,  y * IMAGE_HEIGHT);
             else if (game->map[y][x] == type)
             {
                 if (type == 'P')
                 {
-                    mlx_image_to_window(game->mlx, img, game->start_x + ((x - y) * IMAGE_WIDTH_HALF),  game->start_y + ((x + y) * IMAGE_HEIGHT_HALF));
-                     set_player_iso_x(game->player_img->instances[0].x, game->player_img->instances[0].y, game);
-                     set_player_iso_y(game->player_img->instances[0].x, game->player_img->instances[0].y, game);
+                    mlx_image_to_window(game->mlx, img, x * IMAGE_WIDTH,  y * IMAGE_HEIGHT);
+                    game->player_x = game->player_img->instances[0].x / IMAGE_WIDTH;
+                    game->player_y = game->player_img->instances[0].y / IMAGE_HEIGHT;
                 }
                 else if (type == 'C')
                 {
-                    mlx_image_to_window(game->mlx, img, game->start_x + ((x - y) * IMAGE_WIDTH_HALF), game->start_y + 16 + ((x + y) * IMAGE_HEIGHT_HALF));
+                    mlx_image_to_window(game->mlx, img, x * IMAGE_WIDTH, y * IMAGE_HEIGHT);
                     game->n_collectable += 1;
                     game->r_collectable += 1;
                 }
                 else if (type == '1')
-                    mlx_image_to_window(game->mlx, img, game->start_x + ((x - y) * IMAGE_WIDTH_HALF), game->start_y + ((x + y) * IMAGE_HEIGHT_HALF));
+                    mlx_image_to_window(game->mlx, img, x * IMAGE_WIDTH, y * IMAGE_HEIGHT);
                 else if (type == 'E')
-                    mlx_image_to_window(game->mlx, img, game->start_x + ((x - y) * IMAGE_WIDTH_HALF), game->start_y + ((x + y) * IMAGE_HEIGHT_HALF));
+                    mlx_image_to_window(game->mlx, img, x * IMAGE_WIDTH, y * IMAGE_HEIGHT);
             }
             x++;
         }

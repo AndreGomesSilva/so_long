@@ -4,14 +4,14 @@
 
 #include "../inc/so_long.h"
 
-int32_t map_is_rectangle(t_game *game)
+int map_is_rectangle(t_game *game)
 {
-    int32_t first_line;
-    int32_t y;
-    int32_t x;
+    int first_line;
+    int y;
+    int x;
 
     y = 0;
-    first_line = (int32_t)ft_strlen(*game->map);
+    first_line = (int)ft_strlen(*game->map);
     while (game->map[y])
     {
         x = 0;
@@ -24,12 +24,12 @@ int32_t map_is_rectangle(t_game *game)
     return (TRUE);
 }
 
-int32_t number_player_and_exit(t_game *game)
+int number_player_and_exit(t_game *game)
 {
-    int32_t y;
-    int32_t x;
-    int32_t number_player;
-    int32_t number_exit;
+    int y;
+    int x;
+    int number_player;
+    int number_exit;
 
     y = 0;
     number_player = 0;
@@ -54,7 +54,7 @@ int32_t number_player_and_exit(t_game *game)
 
 void free_map(char **map)
 {
-    int32_t i;
+    int i;
 
     i = 0;
     while(map[i])

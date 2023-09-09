@@ -30,10 +30,10 @@ void	free_game(t_game *game)
 
 void	get_size_window(t_game *game)
 {
-	int32_t	i;
+	int	i;
 
 	i = 0;
-	game->map_row = (int32_t)ft_strlen(*game->map);
+	game->map_row = (int)ft_strlen(*game->map);
 	game->window_w = game->map_row * IMAGE_WIDTH;
 	while (game->map[i])
 		i++;
@@ -50,8 +50,7 @@ int32_t	game_init(char *str)
 	if (map_is_rectangle(&game) && number_player_and_exit(&game))
 	{
 		get_size_window(&game);
-		game.mlx = mlx_init(1920, 1080, "So_long", true);
-        mlx_set_window_limit(game.mlx, 100, 100, 1920, 1080);
+		game.mlx = mlx_init(game.window_w, game.window_h, "So_long", true);
 		check_window_size(&game);
 		if (!game.mlx)
 			ft_error("ERROR = fail to init the window\n");
@@ -62,11 +61,11 @@ int32_t	game_init(char *str)
 	}
 	else
 		ft_error("ERROR = map has to be rectangle and have one player and exit only\n");
-	ft_printf(" \n instance %i x = %i \n", game.player_img->instances[0].y,
+	ft_printf(" \n instance -> y=%i - x=%i \n", game.player_img->instances[0].y,
 			game.player_img->instances[0].x);
-	ft_printf("y = %i x = %i \n", game.player_y, game.player_x);
+	ft_printf("position on map -> y=%i  - x=%i \n", game.player_y, game.player_x);
 	mlx_loop_hook(game.mlx, &hook_close_window, &game);
-    //mlx_key_hook(game.mlx, &hook_player_movement, &game);
+    mlx_key_hook(game.mlx, &hook_player_movement, &game);
 	mlx_loop(game.mlx);
 	free_game(&game);
 	return (EXIT_SUCCESS);

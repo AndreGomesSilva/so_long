@@ -10,8 +10,8 @@ int collect(t_game *game)
     i = 0;
     while (i < game->r_collectable)
     {
-        if (get_x_iso_to_cart(game->collectable_img->instances[i].x, game->collectable_img->instances[i].y, game) == game->player_x &&
-            get_y_iso_to_cart(game->collectable_img->instances[i].x, game->collectable_img->instances[i].y, game) == game->player_y)
+        if (game->collectable_img->instances[i].x / IMAGE_WIDTH == game->player_x &&
+            game->collectable_img->instances[i].y / IMAGE_HEIGHT == game->player_y)
         {
             game->collectable_img->instances[i].enabled = 0;
             ft_printf("\n ###collect -> remain = %i instance -> %i ###\n", game->n_collectable, i);
