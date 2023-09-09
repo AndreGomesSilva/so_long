@@ -3,8 +3,8 @@
 //
 
 #include "../inc/so_long.h"
-//
-//int ft_flood_fill()
+
+//int ft_flood_fill(char **map, char target)
 //{
 //
 //}

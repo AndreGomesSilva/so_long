@@ -36,16 +36,15 @@ void hook_player_movement(mlx_key_data_t keydata, void *param)
     t_game *game;
 
     game = (t_game*)param;
-    if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS && game->map[game->player_y - 1][game->player_x] != '1')
+    if ((keydata.key == MLX_KEY_W ^ keydata.key == MLX_KEY_UP) && keydata.action == MLX_PRESS && game->map[game->player_y - 1][game->player_x] != '1')
        player_move_up(game);
 
-    if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS && game->map[game->player_y + 1][game->player_x] != '1')
+    if ((keydata.key == MLX_KEY_S ^ keydata.key == MLX_KEY_DOWN) && keydata.action == MLX_PRESS && game->map[game->player_y + 1][game->player_x] != '1')
         player_move_down(game);
 
-    if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS && game->map[game->player_y][game->player_x - 1] != '1')
+    if ((keydata.key == MLX_KEY_A ^ keydata.key == MLX_KEY_LEFT) && keydata.action == MLX_PRESS && game->map[game->player_y][game->player_x - 1] != '1')
         player_move_left(game);
 
-
-    if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS && game->map[game->player_y][game->player_x + 1] != '1')
+    if ((keydata.key == MLX_KEY_D ^ keydata.key == MLX_KEY_RIGHT) && keydata.action == MLX_PRESS && game->map[game->player_y][game->player_x + 1] != '1')
         player_move_right(game);
 }

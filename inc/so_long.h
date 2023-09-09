@@ -14,7 +14,6 @@
 # define SO_LONG_H
 # define IMAGE_WIDTH 32
 # define IMAGE_HEIGHT 32
-# define MOVE_RANGE 16
 # define TRUE 1
 # define FALSE 0
 
@@ -47,6 +46,7 @@ typedef struct s_game {
     int r_collectable;
     int image_new_width;
     int image_new_height;
+    int n_player_move;
 }t_game;
 
 int	game_init(char *str);

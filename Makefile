@@ -10,24 +10,25 @@
 #                                                                              #
 # **************************************************************************** #
 
-# Properties for MacOS
-CDEBUG = -g3
-GRATE = GAME_RATE=17
-#LMLX = -lmlx -framework OpenGL -framework AppKit
-LMLX = -framework Cocoa -framework OpenGL -framework IOKit
-
-SHELL=/bin/bash
-UNAME = $(shell uname -s)
-
-ifeq ($(UNAME), Linux)
-	#Properties for Linux
-	LEAKS =  valgrind --leak-check=full --show-leak-kinds=all -s -q
-	CDEBUG = -g3
-endif
-
+## Properties for MacOS
+#CDEBUG = -g3
+#GRATE = GAME_RATE=17
+##LMLX = -lmlx -framework OpenGL -framework AppKit
+#LMLX = -framework Cocoa -framework OpenGL -framework IOKit
+#
+#SHELL=/bin/bash
+#UNAME = $(shell uname -s)
+#
+#ifeq ($(UNAME), Linux)
+#	#Properties for Linux
+#	LEAKS =  valgrind --leak-check=full --show-leak-kinds=all -s -q
+#	CDEBUG = -g3
+#endif
+#
 # Make variables
 HEADER = ./inc
 CFLAGS = -Wall -Wextra -Werror -I$(HEADER)
+LEAKS = valgrind --leak-check=full --show-leak-kinds=all -s -q
 RM = rm -f
 CC = gcc -MD
 AR = ar rcs
@@ -50,7 +51,6 @@ FILES =\
 	main \
 	check_args \
 	game_init \
-	player_actions \
 	handle_input \
 	handle_image \
 	handle_error \
@@ -76,7 +76,7 @@ $(LIBFT):
 	$(MAKE)	-C $(LIBFT_PATH)
 
 play: all
-	./bin/so_long "./maps/map.ber"
+	valgrind ./bin/so_long "./maps/map.ber"
 
 $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)
