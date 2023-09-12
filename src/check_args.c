@@ -31,4 +31,3 @@ int check_args(int argc, char**argv)
         ft_error("ERROR: wrong number of args\n");
     return (0);
 }
-

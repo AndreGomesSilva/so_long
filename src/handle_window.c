@@ -1,19 +1,18 @@
 //
-// Created by Andre on 31/08/23.
+// Created by angomes on 9/12/23.
 //
 
-#include "so_long.h"
+#include "../inc/so_long.h"
 
-void    check_window_size(t_game *game)
+void	get_size_window(t_game *game)
 {
-    if (game->mlx->width <= 800 && game->mlx->height <= 600)
-    {
-        game->image_new_width = 32;
-        game->image_new_height = 32;
-    }
-    else if (game->mlx->width <= 1920 && game->mlx->height <= 1080)
-    {
-        game->image_new_width = 32;
-        game->image_new_height = 32;
-    }
+    int	i;
+
+    i = 0;
+    game->map_row = (int)ft_strlen(*game->map);
+    game->window_w = game->map_row * IMAGE_WIDTH;
+    while (game->map[i])
+        i++;
+    game->map_col = i;
+    game->window_h = game->map_col * IMAGE_HEIGHT;
 }

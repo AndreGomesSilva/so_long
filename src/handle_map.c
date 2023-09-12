@@ -24,30 +24,40 @@ int map_is_rectangle(t_game *game)
     return (TRUE);
 }
 
-int number_player_and_exit(t_game *game)
+int count_type(t_game *game, char type)
 {
     int y;
     int x;
-    int number_player;
-    int number_exit;
+    int tiles_number;
 
+    tiles_number = 0;
     y = 0;
-    number_player = 0;
-    number_exit = 0;
     while (game->map[y])
     {
         x = 0;
         while (game->map[y][x])
         {
-            if (game->map[y][x] == 'P')
-                number_player += 1;
-            if (game->map[y][x] == 'E')
-                number_exit += 1;
+            if (game->map[y][x] == type)
+            {
+                tiles_number += 1;
+                if (type == 'P')
+                {
+                    game->player_x = x;
+                    game->player_y = y;
+                }
+            }
             x++;
         }
         y++;
     }
-    if (number_player != 1 || number_exit != 1)
+    return (tiles_number);
+}
+
+int right_tile_set(t_game *game)
+{
+    game->collectable_number = count_type(game, 'C');
+    game->collectable_remain = game->collectable_number;
+    if (count_type(game, 'P') != 1 || count_type(game, 'E') != 1 || game->collectable_number < 1)
         return (FALSE);
     return(TRUE);
 }

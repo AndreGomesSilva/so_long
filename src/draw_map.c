@@ -4,42 +4,7 @@
 
 #include "../inc/so_long.h"
 
-
-//void draw_layers(t_game *game) {
-//    int32_t x;
-//    int32_t y;
-//
-//    y = 0;
-//    while (game->map[y] != NULL) {
-//        x = 0;
-//        while (game->map[y][x]) {
-//            mlx_image_to_window(game->mlx, game->background_img, game->window_w / 2 + ((x - y) * IMAGE_WIDTH_HALF),
-//                                game->window_h / 2 + ((x + y) * IMAGE_HEIGHT_HALF));
-//            if (game->map[y][x] == '1')
-//            {
-//                mlx_image_to_window(game->mlx, game->wall_img, game->window_w / 2 + ((x - y) * IMAGE_WIDTH_HALF),
-//                                    game->window_h / 2 + ((x + y) * IMAGE_HEIGHT_HALF));
-//            }
-//            else if (game->map[y][x] == 'P')
-//            {
-//                mlx_image_to_window(game->mlx, game->player_img, game->window_w / 2 + ((x - y) * IMAGE_WIDTH_HALF),
-//                                    game->window_h / 2 + ((x + y) * IMAGE_HEIGHT_HALF));
-//                set_player_iso_x(game->player_img->instances[0].x - game->window_w/2, game->player_img->instances[0].y - game->window_h/2, game);
-//                set_player_iso_y(game->player_img->instances[0].x - game->window_w/2, game->player_img->instances[0].y - game->window_h/2, game);
-//            }
-////            else if (game->map[y][x] == 'C')
-////                mlx_image_to_window(game->mlx, game->collectable_img, game->window_w / 2 + ((x - y) * IMAGE_WIDTH_HALF),
-////                                    game->window_h / 2 + ((x + y) * IMAGE_HEIGHT_HALF));
-////            else if (game->map[y][x] == 'E')
-////                mlx_image_to_window(game->mlx, game->exit_img, game->window_w / 2 + ((x - y) * IMAGE_WIDTH_HALF),
-////                                    game->window_h / 2 + ((x + y) * IMAGE_HEIGHT_HALF));
-//            x++;
-//        }
-//        y++;
-//    }
-//}
-
-void draw_layers(t_game *game, mlx_image_t *img, char type)
+void draw_layers(t_window *window, t_game *game, char type)
 {
     int32_t x;
     int32_t y;
@@ -51,25 +16,17 @@ void draw_layers(t_game *game, mlx_image_t *img, char type)
         while (game->map[y][x] != '\0')
         {
             if (type == '0')
-                mlx_image_to_window(game->mlx, img, x * IMAGE_WIDTH,  y * IMAGE_HEIGHT);
+                mlx_image_to_window(window->mlx, window->background_img, x * IMAGE_WIDTH,  y * IMAGE_HEIGHT);
             else if (game->map[y][x] == type)
             {
                 if (type == 'P')
-                {
-                    mlx_image_to_window(game->mlx, img, x * IMAGE_WIDTH,  y * IMAGE_HEIGHT);
-                    game->player_x = game->player_img->instances[0].x / IMAGE_WIDTH;
-                    game->player_y = game->player_img->instances[0].y / IMAGE_HEIGHT;
-                }
+                    mlx_image_to_window(window->mlx, window->player_img, x * IMAGE_WIDTH,  y * IMAGE_HEIGHT);
                 else if (type == 'C')
-                {
-                    mlx_image_to_window(game->mlx, img, x * IMAGE_WIDTH, y * IMAGE_HEIGHT);
-                    game->n_collectable += 1;
-                    game->r_collectable += 1;
-                }
+                    mlx_image_to_window(window->mlx, window->collectable_img, x * IMAGE_WIDTH, y * IMAGE_HEIGHT);
                 else if (type == '1')
-                    mlx_image_to_window(game->mlx, img, x * IMAGE_WIDTH, y * IMAGE_HEIGHT);
+                    mlx_image_to_window(window->mlx, window->wall_img, x * IMAGE_WIDTH, y * IMAGE_HEIGHT);
                 else if (type == 'E')
-                    mlx_image_to_window(game->mlx, img, x * IMAGE_WIDTH, y * IMAGE_HEIGHT);
+                    mlx_image_to_window(window->mlx, window->exit_img, x * IMAGE_WIDTH, y * IMAGE_HEIGHT);
             }
             x++;
         }
@@ -77,21 +34,19 @@ void draw_layers(t_game *game, mlx_image_t *img, char type)
     }
 }
 
-void draw_map(t_game *game)
+void draw_map(t_window *window, t_game *game)
 {
-//    draw_layers(game);
-    draw_layers(game, game->background_img, '0') ;
-    game->n_collectable  = 0;
-    draw_layers(game, game->wall_img, '1');
-    draw_layers(game, game->collectable_img, 'C');
-    draw_layers(game, game->player_img, 'P');
+    draw_layers(window, game, '0') ;
+    draw_layers(window, game, '1');
+    draw_layers(window, game, 'C');
+    draw_layers(window, game, 'P');
 }
 
-int32_t map_construct(t_game *game)
+int map_construct(t_window *window)
 {
-    if (create_texture_from_png(game))
+    if (create_texture_from_png(window))
     {
-        create_img_from_texture(game);
+        create_img_from_texture(window);
         return (TRUE);
     }
     else

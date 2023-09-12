@@ -3,24 +3,23 @@
 //
 #include "../inc/so_long.h"
 
-int collect(t_game *game)
+int collect(t_window *window, t_game *game)
 {
     int i;
 
     i = 0;
-    while (i < game->r_collectable)
+    while (i < game->collectable_remain)
     {
-        if (game->collectable_img->instances[i].x / IMAGE_WIDTH == game->player_x &&
-            game->collectable_img->instances[i].y / IMAGE_HEIGHT == game->player_y)
+        if (window->collectable_img->instances[i].x / IMAGE_WIDTH == game->player_x &&
+            window->collectable_img->instances[i].y / IMAGE_HEIGHT == game->player_y)
         {
-            game->collectable_img->instances[i].enabled = 0;
-            ft_printf("\n ###collect -> remain = %i instance -> %i ###\n", game->n_collectable, i);
+            window->collectable_img->instances[i].enabled = 0;
             game->map[game->player_y][game->player_x] = '0';
-            game->n_collectable -= 1;
+            game->collectable_number -= 1;
         }
         i++;
     }
-    if (game->n_collectable <= 0)
-        draw_layers(game, game->exit_img, 'E');
-  return(1);
+    if (game->collectable_number <= 0)
+        draw_layers(window, game,'E');
+  return(TRUE);
 }
