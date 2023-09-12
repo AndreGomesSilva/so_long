@@ -1,24 +1,7 @@
 
 #include "../inc/so_long.h"
-#include <stdio.h>
 
-//void print_matrix(char **matrix)
-//{
-//    int32_t x;
-//    int32_t y;
-//
-//    y = 0;
-//    while(matrix[y])
-//    {
-//        x = 0;
-//        while (matrix[y][x])
-//        {
-//            ft_printf("%c", matrix[y][x]);
-//            x++;
-//        }
-//        y++;
-//    }
-//}
+
 
 void	free_game(t_game *game)
 {
@@ -64,6 +47,7 @@ int32_t	game_init(char *str)
 	ft_printf(" \n instance -> y=%i - x=%i \n", game.player_img->instances[0].y,
 			game.player_img->instances[0].x);
 	ft_printf("position on map -> y=%i  - x=%i \n", game.player_y, game.player_x);
+    check_map(&game, str);
 	mlx_loop_hook(game.mlx, &hook_close_window, &game);
     mlx_key_hook(game.mlx, &hook_player_movement, &game);
 	mlx_loop(game.mlx);

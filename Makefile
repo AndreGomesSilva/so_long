@@ -30,7 +30,7 @@ HEADER = ./inc
 CFLAGS = -Wall -Wextra -Werror -I$(HEADER)
 LEAKS = valgrind --leak-check=full --show-leak-kinds=all -s -q
 RM = rm -f
-CC = gcc -MD
+CC = gcc -g
 AR = ar rcs
 SRCS_DIR = src
 OBJS_DIR = obj
@@ -56,6 +56,7 @@ FILES =\
 	handle_error \
 	handle_map \
 	handle_window \
+	map_validate \
 	handle_collectable \
 	player_movement \
 	draw_map \
@@ -76,7 +77,7 @@ $(LIBFT):
 	$(MAKE)	-C $(LIBFT_PATH)
 
 play: all
-	valgrind ./bin/so_long "./maps/map.ber"
+	./bin/so_long "./maps/map.ber"
 
 $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)

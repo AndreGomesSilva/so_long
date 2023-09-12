@@ -75,5 +75,6 @@ void    player_move_left(t_game *game);
 void    player_move_right(t_game *game);
 void    check_window_size(t_game *game);
 int collect(t_game *game);
+void    check_map(t_game *game, char *str);
 
 #endif

@@ -11,7 +11,10 @@ void    player_move_up(t_game *game)
     if (game->map[game->player_y][game->player_x] == 'C')
         collect(game);
     else if(game->n_collectable <= 0 && game->map[game->player_y][game->player_x] == 'E')
+    {
+        free_game(game);
         exit(1);
+    }
     game->n_player_move++;
     ft_printf("\n Number of movement of Player: %i \n", game->n_player_move);
     ft_printf(" W -- y = %i x = %i \n", game->player_y, game->player_x);
@@ -24,7 +27,10 @@ void    player_move_down(t_game *game)
     if (game->map[game->player_y][game->player_x] == 'C')
         collect(game);
     else if(game->n_collectable <= 0 && game->map[game->player_y][game->player_x] == 'E')
+    {
+        free_game(game);
         exit(1);
+    }
     game->n_player_move++;
     ft_printf("\n Number of movement of Player: %i \n", game->n_player_move);
     ft_printf(" S -- y = %i x = %i \n", game->player_y, game->player_x);
@@ -37,7 +43,10 @@ void    player_move_right(t_game *game)
     if (game->map[game->player_y][game->player_x] == 'C')
         collect(game);
     else if(game->n_collectable <= 0 && game->map[game->player_y][game->player_x] == 'E')
+    {
+        free_game(game);
         exit(1);
+    }
     game->n_player_move++;
     ft_printf("\n Number of movement of Player: %i \n", game->n_player_move);
     ft_printf(" D -- y = %i x = %i \n", game->player_y, game->player_x);
@@ -50,7 +59,10 @@ void    player_move_left(t_game *game)
     if (game->map[game->player_y][game->player_x] == 'C')
         collect(game);
     else if(game->n_collectable <= 0 && game->map[game->player_y][game->player_x] == 'E')
+    {
+        free_game(game);
         exit(1);
+    }
     game->n_player_move++;
     ft_printf("\n Number of movement of Player: %i \n", game->n_player_move);
     ft_printf("A -- y = %i x = %i\n", game->player_y, game->player_x);
