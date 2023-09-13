@@ -86,7 +86,7 @@ void    validate_map(t_game *game, char *str)
     if (!valid_route(game->cloned_map) || !valid_edges(game))
     {
         free_map(game->cloned_map);
-        ft_error("\n This map is invalid: it must be enclosed by walls and the player must be able to collect and exit \n");
+        ft_error("Error\n This map is invalid: it must be enclosed by walls and the player must be able to collect and exit \n");
     }
     else
         free_map(game->cloned_map);

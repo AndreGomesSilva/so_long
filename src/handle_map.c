@@ -53,10 +53,35 @@ int count_type(t_game *game, char type)
     return (tiles_number);
 }
 
+int valid_set_of_char(t_game *game)
+{
+   int  x;
+   int  y;
+
+   y = 0;
+   while (game->map[y])
+   {
+       x = 0;
+       while (game->map[y][x])
+       {
+           if (game->map[y][x] != '1' && game->map[y][x] != 'C' && game->map[y][x] != 'P' && game->map[y][x] != 'E')
+           {
+               if (game->map[y][x] != '0')
+                   return (FALSE);
+           }
+           x++;
+       }
+       y++;
+   }
+    return (TRUE);
+}
+
 int right_tile_set(t_game *game)
 {
     game->collectable_number = count_type(game, 'C');
     game->collectable_remain = game->collectable_number;
+    if (!valid_set_of_char(game))
+        return (FALSE);
     if (count_type(game, 'P') != 1 || count_type(game, 'E') != 1 || game->collectable_number < 1)
         return (FALSE);
     return(TRUE);
@@ -108,7 +133,8 @@ char **get_map(char *str)
 
     fd = open(str, O_RDONLY);
     if (fd < 0) {
-        return (FALSE);
+        ft_error("Error\n - problem to read the map, verify if the path and the name is correct");
+        return (NULL);
     }
     all_lines = (char *)ft_calloc(1, sizeof(char));
     while (TRUE) {

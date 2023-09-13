@@ -40,7 +40,7 @@ BIN = so_long
 NAME = $(BIN_DIR)/$(BIN)
 LIBFT_PATH = libraries/libft
 LIBFT = $(LIBFT_PATH)/libft.a
-MLX_PATH = libraries/MLX42/build/libmlx42.a -ldl libraries/glfw/libglfw3.a -pthread -lm
+MLX_PATH = libraries/MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm
 MLX_HEADER = libraries/MLX42/include
 
 GNL_DIR = get_next_line
@@ -77,7 +77,7 @@ $(LIBFT):
 	$(MAKE)	-C $(LIBFT_PATH)
 
 play: all
-	./bin/so_long "./maps/map.ber"
+	./bin/so_long "./maps/_map.ber"
 
 $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)

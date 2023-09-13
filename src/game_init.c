@@ -27,14 +27,14 @@ int32_t	game_init(char *str)
         validate_map(&game, str);
 		window.mlx = mlx_init(game.window_w, game.window_h, "So_long", true);
 		if (!window.mlx)
-			ft_error("ERROR = fail to init the window\n");
+			ft_error("Error\n - Fail to init the window\n");
 		if (map_construct(&window))
 			draw_map(&window, &game);
 		else
-			ft_error("ERROR = fail to construct the map\n");
+			ft_error("Error\n - Fail to construct the map\n");
 	}
 	else
-		ft_error("ERROR = map has to be rectangle and have one player, exit and at least one collection\n");
+		ft_error("Error\n - The map must be rectangular, have one player(P), one exit(E) and at least one collectable(C)\n");
     mlx_loop_hook(window.mlx, &hook_close_window, &window);
     mlx_key_hook(window.mlx, &hook_player_movement, &window);
 	mlx_loop(window.mlx);

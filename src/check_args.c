@@ -25,9 +25,9 @@ int check_args(int argc, char**argv)
       if (arg_is_ext_ber(*(argv + 1)))
           return (TRUE);
       else
-          ft_error("ERROR: need a file with extension .ber\n");
+          ft_error("ERROR\n - need a file with extension .ber\n");
     }
     else
-        ft_error("ERROR: wrong number of args\n");
+        ft_error("ERROR\n - wrong number of args\n");
     return (0);
 }
