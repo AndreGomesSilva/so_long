@@ -34,10 +34,9 @@ CC = gcc -g
 AR = ar rcs
 SRCS_DIR = src
 OBJS_DIR = obj
-BIN_DIR = bin
 OBJ_GNL_DIR = obj_gnl
 BIN = so_long
-NAME = $(BIN_DIR)/$(BIN)
+NAME = $(BIN)
 LIBFT_PATH = libraries/libft
 LIBFT = $(LIBFT_PATH)/libft.a
 MLX_PATH = libraries/MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm
@@ -55,7 +54,9 @@ FILES =\
 	handle_image \
 	handle_error \
 	handle_map \
+	check_map \
 	handle_window \
+	handle_free \
 	map_validate \
 	handle_collectable \
 	player_movement \
@@ -68,16 +69,16 @@ OBJS = $(addprefix $(OBJS_DIR)/, $(addsuffix .o, $(FILES)))
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS) | $(BIN_DIR)
-	$(CC) $(CFLAGS) $(CDEBUG) $(OBJS) -L$(LIBFT_PATH) -lft $(MLX_PATH) -o $@
+	$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_PATH) -lft $(MLX_PATH) -o $@
 
 $(OBJS_DIR)/%.o:$(SRCS_DIR)/%.c | $(OBJS_DIR)
-	$(CC) $(CFLAGS) $(CDEBUG) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT):
 	$(MAKE)	-C $(LIBFT_PATH)
 
 play: all
-	./bin/so_long "./maps/_map.ber"
+	./so_long "./maps/map.ber"
 
 $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)

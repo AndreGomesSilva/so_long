@@ -1,11 +1,19 @@
-//
-// Created by Andre on 12/08/23.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_error.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: angomes- <angomes-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/13 18:55:34 by angomes-          #+#    #+#             */
+/*   Updated: 2023/09/13 18:55:40 by angomes-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-void ft_error(char *error)
+void	ft_error(char *error)
 {
-    ft_printf("\n%s\n", error);
-    exit(EXIT_FAILURE);
+	ft_printf("\n%s\n", error);
+	exit(EXIT_FAIL);
 }
