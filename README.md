@@ -10,7 +10,9 @@ To run so_long, you will need to have the MLX42 library installed on your system
 
 ### Gameplay
 
-[map_ber.webm](./asset/video/map_ber.webm)
+<video autoplay loop muted playsinline>
+  <source src="my-animation.webm" type="./assets/video/map_ber.webm">
+</video>
 
 In so_long, the player controls a character that must navigate through a maze-like environment in order to collect all the required items and reach the exit. Along the way, the player must avoid enemies that move around the map and try to block the player's progress.
 
