@@ -16,15 +16,7 @@
 ##LMLX = -lmlx -framework OpenGL -framework AppKit
 #LMLX = -framework Cocoa -framework OpenGL -framework IOKit
 #
-#SHELL=/bin/bash
-#UNAME = $(shell uname -s)
-#
-#ifeq ($(UNAME), Linux)
-#	#Properties for Linux
-#	LEAKS =  valgrind --leak-check=full --show-leak-kinds=all -s -q
-#	CDEBUG = -g3
-#endif
-#
+
 # Make variables
 HEADER = ./inc
 CFLAGS = -Wall -Wextra -Werror -I$(HEADER)
@@ -41,8 +33,6 @@ LIBFT_PATH = libraries/libft
 LIBFT = $(LIBFT_PATH)/libft.a
 MLX_PATH = libraries/MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm
 MLX_HEADER = libraries/MLX42/include
-
-GNL_DIR = get_next_line
 
 SRCS_MAPS = "./maps/map.ber"
 
@@ -61,8 +51,6 @@ FILES =\
 	handle_collectable \
 	player_movement \
 	draw_map \
-
-#SRCS = $(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(FILES)))
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(addsuffix .o, $(FILES)))
 
