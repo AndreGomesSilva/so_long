@@ -1,3 +1,13 @@
+---
+
+<div align="center">
+
+![so_longm](https://github.com/AndreGomesSilva/so_long/assets/59901704/df65e356-bb44-4f6c-a289-a1fbf3f6ba19)
+
+</div>
+
+---
+
 # So_Long
 
 ### Introduction
