@@ -6,7 +6,7 @@
 /*   By: angomes- <angomes-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 18:57:27 by angomes-          #+#    #+#             */
-/*   Updated: 2023/09/13 18:57:37 by angomes-         ###   ########.fr       */
+/*   Updated: 2023/09/14 13:04:38 by angomes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ char	**get_map(char *str)
 	fd = open(str, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_error("Error\n - problem to read the map verify if the path and the name is correct");
+		ft_error("Error\n - problem to read the map verify if the path" \
+		" and the name is correct");
 		return (NULL);
 	}
 	all_lines = (char *)ft_calloc(1, sizeof(char));

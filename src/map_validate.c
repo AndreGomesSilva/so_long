@@ -6,7 +6,7 @@
 /*   By: angomes- <angomes-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 18:58:40 by angomes-          #+#    #+#             */
-/*   Updated: 2023/09/13 18:58:46 by angomes-         ###   ########.fr       */
+/*   Updated: 2023/10/24 18:43:39 by angomes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_flood_fill(t_game *game, char **map, int x, int y)
 	{
 		return (TRUE);
 	}
-	return (0);
+	return (EXIT_OK);
 }
 
 int	valid_route(char **cloned_map)
@@ -77,8 +77,8 @@ void	validate_map(t_game *game, char *str)
 	if (!valid_route(game->cloned_map) || !valid_edges(game))
 	{
 		free_map(game->cloned_map);
-		ft_error("Error\n This map is invalid: it must be enclosed by walls" \
-		"and the player must be able to collect and exit \n");
+		ft_error("Error\n This map is invalid: it must be enclosed by walls"
+					" and the player must be able to collect and exit \n");
 	}
 	else
 		free_map(game->cloned_map);

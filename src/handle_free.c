@@ -1,6 +1,14 @@
-//
-// Created by angomes- on 9/13/23.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_free.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: angomes- <angomes-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/14 11:13:20 by angomes-          #+#    #+#             */
+/*   Updated: 2023/09/14 13:04:43 by angomes-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
@@ -17,7 +25,7 @@ void	free_map(char **map)
 	free(map);
 }
 
-static	void	free_images(t_window *window)
+static void	free_images(t_window *window)
 {
 	mlx_delete_image(window->mlx, window->background_img);
 	mlx_delete_image(window->mlx, window->wall_img);
@@ -39,6 +47,8 @@ void	free_game(t_window *window, t_game *game)
 {
 	free_images(window);
 	free_textures(window);
-	mlx_terminate(window->mlx);
+	mlx_close_window(window->mlx);
 	free_map(game->map);
+	mlx_terminate(window->mlx);
+	exit(EXIT_OK);
 }
